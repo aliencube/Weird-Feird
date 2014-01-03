@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Services", "WeirdFeird.Services\WeirdFeird.Services.csproj", "{928B8328-2361-42A4-B07A-999BAE60FBC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Services.Tests", "WeirdFeird.Services.Tests\WeirdFeird.Services.Tests.csproj", "{1B91F8F9-A36A-48CB-BEE0-EDC78BD0635A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{02E77083-95C0-42E0-8E50-225DDA3ACF10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", "{BA11F6F9-39E0-4E1E-8232-0314CDFA595B}"
+	ProjectSection(SolutionItems) = preProject
+		..\Documents\Properties\CommonAssemblyInfo.cs = ..\Documents\Properties\CommonAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{150B02C9-E69C-4AE2-87BC-D9C76FF9BCFC}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{928B8328-2361-42A4-B07A-999BAE60FBC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{928B8328-2361-42A4-B07A-999BAE60FBC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{928B8328-2361-42A4-B07A-999BAE60FBC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{928B8328-2361-42A4-B07A-999BAE60FBC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B91F8F9-A36A-48CB-BEE0-EDC78BD0635A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B91F8F9-A36A-48CB-BEE0-EDC78BD0635A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B91F8F9-A36A-48CB-BEE0-EDC78BD0635A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B91F8F9-A36A-48CB-BEE0-EDC78BD0635A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BA11F6F9-39E0-4E1E-8232-0314CDFA595B} = {02E77083-95C0-42E0-8E50-225DDA3ACF10}
+	EndGlobalSection
+EndGlobal
