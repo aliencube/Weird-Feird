@@ -53,6 +53,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -66,13 +67,24 @@
     </Compile>
     <Compile Include="ConfigurationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="WeirdFeird.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WeirdFeird.Configurations\WeirdFeird.Configurations.csproj">
+      <Project>{f9c98e8f-7199-43f8-8c07-6df45b5f63a7}</Project>
+      <Name>WeirdFeird.Configurations</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+xcopy "$(ProjectDir)$(SolutionName).config" "$(TargetDir)" /y
+</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -8,6 +8,9 @@ using Aliencube.WeirdFeird.Configurations.Interfaces;
 
 namespace Aliencube.WeirdFeird.Configurations
 {
+    /// <summary>
+    /// This represents a configuration settings entity for Weird Feird.
+    /// </summary>
     public class WeirdFeirdSettings : ConfigurationSection, IWeirdFeirdSettings
     {
         #region Properties
