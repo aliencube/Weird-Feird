@@ -24,6 +24,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{2468
 		..\Documents\Samples\Rss.Wordpress.xml = ..\Documents\Samples\Rss.Wordpress.xml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Configurations", "WeirdFeird.Configurations\WeirdFeird.Configurations.csproj", "{F9C98E8F-7199-43F8-8C07-6DF45B5F63A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Configurations.Tests", "WeirdFeird.Configurations.Tests\WeirdFeird.Configurations.Tests.csproj", "{909003FA-C5C9-4223-93D0-D210260412EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +42,14 @@ Global
 		{1B91F8F9-A36A-48CB-BEE0-EDC78BD0635A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B91F8F9-A36A-48CB-BEE0-EDC78BD0635A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B91F8F9-A36A-48CB-BEE0-EDC78BD0635A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9C98E8F-7199-43F8-8C07-6DF45B5F63A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9C98E8F-7199-43F8-8C07-6DF45B5F63A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9C98E8F-7199-43F8-8C07-6DF45B5F63A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9C98E8F-7199-43F8-8C07-6DF45B5F63A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{909003FA-C5C9-4223-93D0-D210260412EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{909003FA-C5C9-4223-93D0-D210260412EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{909003FA-C5C9-4223-93D0-D210260412EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{909003FA-C5C9-4223-93D0-D210260412EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Aliencube.WeirdFeird.Services.Tests")]
+[assembly: AssemblyTitle("Aliencube.WeirdFeird.Configurations")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyProduct("Aliencube.WeirdFeird.Services.Tests")]
+[assembly: AssemblyProduct("Aliencube.WeirdFeird.Configurations")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -16,4 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("be7cbc30-7c6d-47e5-8f8e-7eb888b1bdea")]
+[assembly: Guid("78d88631-d892-4ca8-99a2-063eead65b70")]
