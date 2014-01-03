@@ -82,6 +82,10 @@
       <Project>{f9c98e8f-7199-43f8-8c07-6df45b5f63a7}</Project>
       <Name>WeirdFeird.Configurations</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WeirdFeird.Services\WeirdFeird.Services.csproj">
+      <Project>{928b8328-2361-42a4-b07a-999bae60fbc4}</Project>
+      <Name>WeirdFeird.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

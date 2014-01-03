@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text;
 using Aliencube.WeirdFeird.Configurations;
 using Aliencube.WeirdFeird.Configurations.Interfaces;
+using Aliencube.WeirdFeird.Services.Interfaces;
 using NUnit.Framework;
 using NSubstitute;
 
@@ -19,6 +20,7 @@ namespace Aliencube.WeirdFeird.Services.Tests
     public class WordpressServiceTest
     {
         private IWeirdFeirdSettings _settings;
+        private IProviderBase _wordpress;
 
         #region SetUp / TearDown
 
@@ -26,11 +28,13 @@ namespace Aliencube.WeirdFeird.Services.Tests
         public void Init()
         {
             this._settings = ConfigurationManager.GetSection("weirdFeird") as WeirdFeirdSettings;
+            this._wordpress = new WordpressProvider(this._settings);
         }
 
         [TearDown]
         public void Dispose()
         {
+            this._wordpress.Dispose();
             this._settings.Dispose();
         }
 
@@ -47,22 +51,7 @@ namespace Aliencube.WeirdFeird.Services.Tests
                   "http://justinchronicles.net/tag/weird-meetup/feed")]
         public async void GetContents_GivenFeedUrls_ContentsReturned(params string[] feedUrls)
         {
-            var contents = new List<string>();
-            using (var handler = new HttpClientHandler() { UseProxy = this._settings.Proxy.Use })
-            {
-                if (handler.UseProxy)
-                {
-                    handler.Proxy = new WebProxy(this._settings.Proxy.Url);
-                }
-                using (var client = new HttpClient(handler))
-                {
-                    foreach (var feedUrl in feedUrls)
-                    {
-                        var content = await client.GetStringAsync(feedUrl);
-                        contents.Add(content);
-                    }
-                }
-            }
+            var contents = await this._wordpress.GetContentsAsync(feedUrls);
 
             Assert.IsTrue(contents.All(p => !String.IsNullOrWhiteSpace(p)));
         }
