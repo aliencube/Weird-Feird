@@ -49,7 +49,9 @@
     <Compile Include="WeirdFeirdSettings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="WeirdFeird.config" />
+    <None Include="WeirdFeird.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
