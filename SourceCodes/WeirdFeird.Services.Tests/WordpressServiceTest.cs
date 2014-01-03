@@ -48,17 +48,19 @@ namespace Aliencube.WeirdFeird.Services.Tests
         public async void GetContents_GivenFeedUrls_ContentsReturned(params string[] feedUrls)
         {
             var contents = new List<string>();
-            using (var handler = new HttpClientHandler()
-                                 {
-                                     UseProxy = this._settings.Proxy.Use,
-                                     Proxy = new WebProxy(this._settings.Proxy.Url)
-                                 })
-            using (var client = new HttpClient(handler))
+            using (var handler = new HttpClientHandler() { UseProxy = this._settings.Proxy.Use })
             {
-                foreach (var feedUrl in feedUrls)
+                if (handler.UseProxy)
                 {
-                    var content = await client.GetStringAsync(feedUrl);
-                    contents.Add(content);
+                    handler.Proxy = new WebProxy(this._settings.Proxy.Url);
+                }
+                using (var client = new HttpClient(handler))
+                {
+                    foreach (var feedUrl in feedUrls)
+                    {
+                        var content = await client.GetStringAsync(feedUrl);
+                        contents.Add(content);
+                    }
                 }
             }
 
