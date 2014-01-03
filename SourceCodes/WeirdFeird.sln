@@ -17,6 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{150B02
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{2468ACA7-4893-4A34-A5F7-BD0C0F261BA3}"
+	ProjectSection(SolutionItems) = preProject
+		..\Documents\Samples\Atom.Blogspot.xml = ..\Documents\Samples\Atom.Blogspot.xml
+		..\Documents\Samples\Rss.Blogspot.xml = ..\Documents\Samples\Rss.Blogspot.xml
+		..\Documents\Samples\Rss.Wordpress.xml = ..\Documents\Samples\Rss.Wordpress.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,5 +44,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BA11F6F9-39E0-4E1E-8232-0314CDFA595B} = {02E77083-95C0-42E0-8E50-225DDA3ACF10}
+		{2468ACA7-4893-4A34-A5F7-BD0C0F261BA3} = {02E77083-95C0-42E0-8E50-225DDA3ACF10}
 	EndGlobalSection
 EndGlobal
