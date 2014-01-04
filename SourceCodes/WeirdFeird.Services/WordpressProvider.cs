@@ -59,7 +59,31 @@ namespace Aliencube.WeirdFeird.Services
             return xml;
         }
 
+        /// <summary>
+        /// Checks wether the given XML document is for RSS feed or not.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns <c>True</c>, if the name of the root element is "rss"; otherwise returns <c>False</c>.</returns>
+        public override bool IsRss(XDocument feed)
+        {
+            if (feed == null || feed.Root == null)
+                return false;
 
+            return feed.Root.Name.ToString().ToLower() == "rss";
+        }
+
+        /// <summary>
+        /// Checks wether the given XML document is for ATOM feed or not.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns <c>True</c>, if the name of the root element is "feed"; otherwise returns <c>False</c>.</returns>
+        public override bool IsAtom(XDocument feed)
+        {
+            if (feed == null || feed.Root == null)
+                return false;
+
+            return feed.Root.Name.ToString().ToLower() == "feed";
+        }
 
         #endregion
 

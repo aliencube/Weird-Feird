@@ -47,6 +47,20 @@ namespace Aliencube.WeirdFeird.Services
         public abstract Task<XDocument> GetFeedXmlAsync(string feedUrl);
 
         /// <summary>
+        /// Checks wether the given XML document is for RSS feed or not.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns <c>True</c>, if the name of the root element is "rss"; otherwise returns <c>False</c>.</returns>
+        public abstract bool IsRss(XDocument feed);
+
+        /// <summary>
+        /// Checks wether the given XML document is for ATOM feed or not.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns <c>True</c>, if the name of the root element is "feed"; otherwise returns <c>False</c>.</returns>
+        public abstract bool IsAtom(XDocument feed);
+
+        /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing,
         /// or resetting unmanaged resources.
         /// </summary>

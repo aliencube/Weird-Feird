@@ -52,31 +52,29 @@ namespace Aliencube.WeirdFeird.Services.Tests
                   "http://justinchronicles.net/tag/weird-meetup/feed")]
         public async void GetXmlDocs_GivenFeedUrls_XmlDocsReturned(params string[] feedUrls)
         {
-            var docs = new List<XDocument>();
+            var feeds = new List<XDocument>();
             foreach (var feedUrl in feedUrls)
             {
-                var doc = await this._wordpress.GetFeedXmlAsync(feedUrl);
-                docs.Add(doc);
+                var feed = await this._wordpress.GetFeedXmlAsync(feedUrl);
+                feeds.Add(feed);
             }
 
-            Assert.IsTrue(docs.All(p => p.Root != null));
+            Assert.IsTrue(feeds.All(p => p.Root != null));
         }
 
         /// <summary>
         /// Tests to check the name of the root element is "rss".
         /// </summary>
         /// <param name="feedUrl">Feed URL.</param>
-        /// <param name="rootElementName">Name of the root element.</param>
+        /// <param name="expected">Expected value that specifies whether it is RSS feed or not.</param>
         [Test]
-        [TestCase("http://blog.aliencube.org/tag/weird-meetup/feed", "rss")]
-        public async void CheckRssFeed_GivenFeedUrls_RssConfirmed(string feedUrl, string rootElementName)
+        [TestCase("http://blog.aliencube.org/tag/weird-meetup/feed", true)]
+        public async void CheckRssFeed_GivenFeedUrls_RssConfirmed(string feedUrl, bool expected)
         {
-            var doc = await this._wordpress.GetFeedXmlAsync(feedUrl);
+            var feed = await this._wordpress.GetFeedXmlAsync(feedUrl);
+            var isRss = this._wordpress.IsRss(feed);
 
-            if (doc.Root == null)
-                Assert.Fail("Root element is missing");
-
-            Assert.AreEqual(rootElementName, doc.Root.Name.ToString());
+            Assert.AreEqual(expected, isRss);
         }
 
         #endregion
