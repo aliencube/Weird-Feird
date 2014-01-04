@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Xml.Linq;
 using Aliencube.WeirdFeird.Configurations;
 using Aliencube.WeirdFeird.Configurations.Interfaces;
 using Aliencube.WeirdFeird.Services.Interfaces;
@@ -43,17 +44,39 @@ namespace Aliencube.WeirdFeird.Services.Tests
         #region Tests
 
         /// <summary>
-        /// Tests to get contents from given feed URLs.
+        /// Tests to get XML contents from given feed URLs.
         /// </summary>
         /// <param name="feedUrls">List of feed URLs.</param>
         [Test]
         [TestCase("http://blog.aliencube.org/tag/weird-meetup/feed",
                   "http://justinchronicles.net/tag/weird-meetup/feed")]
-        public async void GetContents_GivenFeedUrls_ContentsReturned(params string[] feedUrls)
+        public async void GetXmlDocs_GivenFeedUrls_XmlDocsReturned(params string[] feedUrls)
         {
-            var contents = await this._wordpress.GetContentsAsync(feedUrls);
+            var docs = new List<XDocument>();
+            foreach (var feedUrl in feedUrls)
+            {
+                var doc = await this._wordpress.GetFeedXmlAsync(feedUrl);
+                docs.Add(doc);
+            }
 
-            Assert.IsTrue(contents.All(p => !String.IsNullOrWhiteSpace(p)));
+            Assert.IsTrue(docs.All(p => p.Root != null));
+        }
+
+        /// <summary>
+        /// Tests to check the name of the root element is "rss".
+        /// </summary>
+        /// <param name="feedUrl">Feed URL.</param>
+        /// <param name="rootElementName">Name of the root element.</param>
+        [Test]
+        [TestCase("http://blog.aliencube.org/tag/weird-meetup/feed", "rss")]
+        public async void CheckRssFeed_GivenFeedUrls_RssConfirmed(string feedUrl, string rootElementName)
+        {
+            var doc = await this._wordpress.GetFeedXmlAsync(feedUrl);
+
+            if (doc.Root == null)
+                Assert.Fail("Root element is missing");
+
+            Assert.AreEqual(rootElementName, doc.Root.Name.ToString());
         }
 
         #endregion
