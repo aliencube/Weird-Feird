@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Aliencube.WeirdFeird.Configurations.Interfaces;
 using Aliencube.WeirdFeird.Services.Interfaces;
 
@@ -39,11 +40,11 @@ namespace Aliencube.WeirdFeird.Services
         #region Methods
 
         /// <summary>
-        /// Gets the list of XML contents from given feed URLs asynchronously.
+        /// Gets the XML feed contents from given feed URL asynchronously.
         /// </summary>
-        /// <param name="feedUrls">List of feed URLs.</param>
-        /// <returns>Returns the list of XML contents from given feed URLs asynchronously.</returns>
-        public abstract Task<List<string>> GetContentsAsync(IEnumerable<string> feedUrls);
+        /// <param name="feedUrl">Feed URL.</param>
+        /// <returns>Returns the XML feed contents from given feed URL asynchronously.</returns>
+        public abstract Task<XDocument> GetFeedXmlAsync(string feedUrl);
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing,

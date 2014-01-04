@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Aliencube.WeirdFeird.Configurations.Interfaces;
 
 namespace Aliencube.WeirdFeird.Services
@@ -30,14 +31,17 @@ namespace Aliencube.WeirdFeird.Services
         #region Methods
 
         /// <summary>
-        /// Gets the list of XML contents from given feed URLs asynchronously.
+        /// Gets the XML feed contents from given feed URL asynchronously.
         /// </summary>
-        /// <param name="feedUrls">List of feed URLs.</param>
-        /// <returns>Returns the list of XML contents from given feed URLs asynchronously.</returns>
-        public override async Task<List<string>> GetContentsAsync(IEnumerable<string> feedUrls)
+        /// <param name="feedUrl">Feed URL.</param>
+        /// <returns>Returns the XML feed contents from given feed URL asynchronously.</returns>
+        public override async Task<XDocument> GetFeedXmlAsync(string feedUrl)
         {
-            var contents = new List<string>();
-            using (var handler = new HttpClientHandler() { UseProxy = this.Settings.Proxy.Use })
+            if (String.IsNullOrWhiteSpace(feedUrl))
+                return null;
+
+            XDocument xml;
+            using (var handler = new HttpClientHandler() {UseProxy = this.Settings.Proxy.Use})
             {
                 //  Sets the proxy server, if it is used.
                 if (handler.UseProxy)
@@ -46,16 +50,16 @@ namespace Aliencube.WeirdFeird.Services
                 }
 
                 using (var client = new HttpClient(handler))
+                using (var stream = await client.GetStreamAsync(feedUrl))
                 {
-                    foreach (var feedUrl in feedUrls)
-                    {
-                        var content = await client.GetStringAsync(feedUrl);
-                        contents.Add(content);
-                    }
+                    xml = XDocument.Load(stream);
                 }
             }
-            return contents;
+
+            return xml;
         }
+
+
 
         #endregion
 
