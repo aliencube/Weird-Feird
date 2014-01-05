@@ -4,9 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Aliencube.WeirdFeird.Configurations.Interfaces;
+using Aliencube.WeirdFeird.Services.Exceptions;
 
 namespace Aliencube.WeirdFeird.Services
 {
@@ -28,6 +30,26 @@ namespace Aliencube.WeirdFeird.Services
 
         #endregion
 
+        #region Properties
+
+        private Regex _generator;
+
+        /// <summary>
+        /// Gets the regular expression instance to check feed generator.
+        /// </summary>
+        public override Regex Generator
+        {
+            get
+            {
+                if (this._generator == null)
+                    this._generator = new Regex(@"^http://wordpress\.(com|org)",
+                                                RegexOptions.Compiled | RegexOptions.IgnoreCase);
+                return this._generator;
+            }
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -38,7 +60,7 @@ namespace Aliencube.WeirdFeird.Services
         public override async Task<XDocument> GetFeedXmlAsync(string feedUrl)
         {
             if (String.IsNullOrWhiteSpace(feedUrl))
-                return null;
+                throw new ArgumentNullException("feedUrl", "No feed URL provided");
 
             XDocument xml;
             using (var handler = new HttpClientHandler() {UseProxy = this.Settings.Proxy.Use})
@@ -67,7 +89,7 @@ namespace Aliencube.WeirdFeird.Services
         public override bool IsRss(XDocument feed)
         {
             if (feed == null || feed.Root == null)
-                return false;
+                throw new InvalidFeedFormatException("No feed element found");
 
             return feed.Root.Name.ToString().ToLower() == "rss";
         }
@@ -80,9 +102,31 @@ namespace Aliencube.WeirdFeird.Services
         public override bool IsAtom(XDocument feed)
         {
             if (feed == null || feed.Root == null)
-                return false;
+                throw new InvalidFeedFormatException("No feed element found");
 
             return feed.Root.Name.ToString().ToLower() == "feed";
+        }
+
+        /// <summary>
+        /// Checks whether the given XML document is for Wordpress feed or not.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns <c>True</c>, if the generator element identifies it is a Wordpress feed; otherwise returns <c>False</c>.</returns>
+        public override bool IsWordpress(XDocument feed)
+        {
+            if (feed == null || feed.Root == null)
+                throw new InvalidFeedFormatException("No feed element found");
+
+            var channel = feed.Root.Element("channel");
+            if (channel == null)
+                throw new InvalidFeedFormatException("No channel element found");
+
+            var generator = channel.Element("generator");
+            if (generator == null)
+                throw new InvalidFeedFormatException("No generator element found");
+
+            var value = generator.Value;
+            return this.Generator.IsMatch(value);
         }
 
         #endregion

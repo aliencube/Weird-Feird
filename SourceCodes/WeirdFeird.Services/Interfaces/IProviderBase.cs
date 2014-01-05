@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -12,6 +13,15 @@ namespace Aliencube.WeirdFeird.Services.Interfaces
     /// </summary>
     public interface IProviderBase : IDisposable
     {
+        #region Properties
+
+        /// <summary>
+        /// Gets the regular expression instance to check feed generator.
+        /// </summary>
+        Regex Generator { get; }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -34,6 +44,13 @@ namespace Aliencube.WeirdFeird.Services.Interfaces
         /// <param name="feed">XDocument feed instance.</param>
         /// <returns>Returns <c>True</c>, if the name of the root element is "feed"; otherwise returns <c>False</c>.</returns>
         bool IsAtom(XDocument feed);
+
+        /// <summary>
+        /// Checks whether the given XML document is for Wordpress feed or not.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns <c>True</c>, if the generator element identifies it is a Wordpress feed; otherwise returns <c>False</c>.</returns>
+        bool IsWordpress(XDocument feed);
 
         #endregion
     }
