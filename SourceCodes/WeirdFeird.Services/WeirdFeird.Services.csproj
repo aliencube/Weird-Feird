@@ -47,6 +47,7 @@
     <Compile Include="..\..\Documents\Properties\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Exceptions\InvalidFeedFormatException.cs" />
     <Compile Include="Interfaces\IProviderBase.cs" />
     <Compile Include="WordpressProvider.cs" />
     <Compile Include="ProviderBase.cs" />
@@ -63,6 +64,7 @@
       <Name>WeirdFeird.Configurations</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
