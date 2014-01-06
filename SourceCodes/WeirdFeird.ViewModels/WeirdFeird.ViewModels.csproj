@@ -48,11 +48,15 @@
     <Compile Include="Feeds\Rss\Enclosure.cs" />
     <Compile Include="Feeds\Rss\Guid.cs" />
     <Compile Include="Feeds\Rss\Image.cs" />
-    <Compile Include="Feeds\Rss\Item.cs" />
+    <Compile Include="Feeds\Rss\EntryItem.cs" />
     <Compile Include="Feeds\Rss\RssFeed.cs" />
     <Compile Include="Feeds\Rss\Source.cs" />
     <Compile Include="Feeds\Rss\TextInput.cs" />
-    <Compile Include="Feeds\WordpressFeed.cs" />
+    <Compile Include="Feeds\Wordpress\FeedLink.cs" />
+    <Compile Include="Feeds\Wordpress\Syndication.cs" />
+    <Compile Include="Feeds\Wordpress\UpdatePeriod.cs" />
+    <Compile Include="Feeds\Wordpress\WordpressEntryItem.cs" />
+    <Compile Include="Feeds\Wordpress\WordpressFeed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

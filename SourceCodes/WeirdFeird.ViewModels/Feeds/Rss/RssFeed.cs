@@ -4,8 +4,11 @@ using System.Collections.Generic;
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
 {
     /// <summary>
-    /// This represents the RSS feed entity. This information is based on http://www.rssboard.org/rss-specification
+    /// This represents the RSS feed entity. This must be inherited.
     /// </summary>
+    /// <remarks>
+    /// The structure of this class is based on http://www.rssboard.org/rss-specification.
+    /// </remarks>
     public abstract class RssFeed
     {
         /// <summary>
@@ -106,6 +109,6 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
         /// <summary>
         /// Gets or sets the list of "story" items.
         /// </summary>
-        public IList<Item> Items { get; set; }
+        public IList<EntryItem> Items { get; set; }
     }
 }

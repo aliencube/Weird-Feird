@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
 
-namespace Aliencube.WeirdFeird.ViewModels.Feeds
+namespace Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress
 {
-    public class WordpressFeed : RssFeed
+    public class WordpressEntryItem : EntryItem
     {
     }
 }

@@ -4,9 +4,15 @@ using System.Collections.Generic;
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
 {
     /// <summary>
-    /// This represents an entity of a "story", which is much like a story in a newspaper or magazine; if so its description is a synopsis of the story, and the link points to the full story. An item may also be complete in itself, if so, the description contains the text (entity-encoded HTML is allowed), and the link and title may be omitted. All elements of an item are optional, however at least one of title or description must be present.
+    /// This represents an entity of a "story". This must be inherited.
     /// </summary>
-    public class Item
+    /// <remarks>
+    /// This is much like a story in a newspaper or magazine; if so its description is a synopsis of the story,
+    /// and the link points to the full story. An item may also be complete in itself, if so, the description 
+    /// contains the text (entity-encoded HTML is allowed), and the link and title may be omitted. All elements
+    /// of an item are optional, however at least one of title or description must be present.
+    /// </remarks>
+    public abstract class EntryItem
     {
         /// <summary>
         /// Gets or sets the title of the item.
