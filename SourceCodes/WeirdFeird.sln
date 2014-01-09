@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Configurations",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Configurations.Tests", "WeirdFeird.Configurations.Tests\WeirdFeird.Configurations.Tests.csproj", "{909003FA-C5C9-4223-93D0-D210260412EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.ViewModels", "WeirdFeird.ViewModels\WeirdFeird.ViewModels.csproj", "{69CA440E-46D9-4906-A49C-79F0DA3992B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{909003FA-C5C9-4223-93D0-D210260412EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{909003FA-C5C9-4223-93D0-D210260412EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{909003FA-C5C9-4223-93D0-D210260412EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69CA440E-46D9-4906-A49C-79F0DA3992B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69CA440E-46D9-4906-A49C-79F0DA3992B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69CA440E-46D9-4906-A49C-79F0DA3992B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69CA440E-46D9-4906-A49C-79F0DA3992B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
