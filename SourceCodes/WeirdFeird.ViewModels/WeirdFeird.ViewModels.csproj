@@ -42,6 +42,15 @@
     <Compile Include="..\..\Documents\Properties\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Enums\Protocol.cs" />
+    <Compile Include="Enums\SkipDay.cs" />
+    <Compile Include="Extensions\Content.cs" />
+    <Compile Include="Extensions\DublinCore.cs" />
+    <Compile Include="Extensions\Rss.cs" />
+    <Compile Include="Extensions\Slash.cs" />
+    <Compile Include="Extensions\Syndication.cs" />
+    <Compile Include="Extensions\CommentApi.cs" />
+    <Compile Include="Interfaces\Rss\IRss.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schemata\Atom.cs" />
     <Compile Include="Schemata\CommentApi.cs" />
@@ -50,6 +59,7 @@
     <Compile Include="Schemata\Rss.cs" />
     <Compile Include="Schemata\Slash.cs" />
     <Compile Include="Schemata\Syndication.cs" />
+    <Compile Include="WordpressRss.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
