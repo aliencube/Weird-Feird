@@ -28,8 +28,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Configurations",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Configurations.Tests", "WeirdFeird.Configurations.Tests\WeirdFeird.Configurations.Tests.csproj", "{909003FA-C5C9-4223-93D0-D210260412EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.ViewModels", "WeirdFeird.ViewModels\WeirdFeird.ViewModels.csproj", "{69CA440E-46D9-4906-A49C-79F0DA3992B8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{06E551AF-2FB3-427B-84F3-42C9F220E009}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FeedSchemata", "FeedSchemata", "{ACF1D24D-18D7-437A-B64A-62029A8B4B9C}"
@@ -42,6 +40,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FeedSchemata", "FeedSchemat
 		..\Libraries\FeedSchemata\Slash.xsd = ..\Libraries\FeedSchemata\Slash.xsd
 		..\Libraries\FeedSchemata\Syndication.xsd = ..\Libraries\FeedSchemata\Syndication.xsd
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.ViewModels", "WeirdFeird.ViewModels\WeirdFeird.ViewModels.csproj", "{69CA440E-46D9-4906-A49C-79F0DA3992B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
