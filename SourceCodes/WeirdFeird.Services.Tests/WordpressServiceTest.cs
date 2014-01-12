@@ -88,22 +88,7 @@ namespace Aliencube.WeirdFeird.Services.Tests
         public async void CheckWordpressFeed_GivenFeedUrl_WordpressConfirmed(string feedUrl, bool expected)
         {
             var feed = await this._wordpress.GetFeedXmlAsync(feedUrl);
-
-            if (feed == null || feed.Root == null)
-                Assert.Fail("No feed found");
-
-            var channel = feed.Root.Element("channel");
-            if (channel == null)
-                Assert.Fail("No channel found");
-
-            var generator = channel.Element("generator");
-            if (generator == null)
-                Assert.Fail("No generator found");
-
-            var value = generator.Value;
-            var isWordpress = Regex.IsMatch(value,
-                                            @"^http://wordpress\.(com|org)",
-                                            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            var isWordpress = this._wordpress.IsWordpress(feed);
 
             Assert.AreEqual(expected, isWordpress);
         }
