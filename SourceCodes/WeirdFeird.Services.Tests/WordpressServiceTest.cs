@@ -7,11 +7,17 @@ using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using System.Xml.Schema;
 using Aliencube.WeirdFeird.Configurations;
 using Aliencube.WeirdFeird.Configurations.Interfaces;
 using Aliencube.WeirdFeird.Services.Interfaces;
+using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
+using Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress;
+using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
+using Aliencube.WeirdFeird.ViewModels.Interfaces.Wordpress;
 using NUnit.Framework;
 using NSubstitute;
+using Guid = Aliencube.WeirdFeird.ViewModels.Feeds.Rss.Guid;
 
 namespace Aliencube.WeirdFeird.Services.Tests
 {
@@ -91,6 +97,51 @@ namespace Aliencube.WeirdFeird.Services.Tests
             var isWordpress = this._wordpress.IsWordpress(feed);
 
             Assert.AreEqual(expected, isWordpress);
+        }
+
+        [Test]
+        public async void GetWordpressRss_GivenFeedUrl_WordpressRssReturned(string feedUrl)
+        {
+            var feed = await this._wordpress.GetFeedXmlAsync(feedUrl);
+            var channel = feed.Root.Element("channel");
+            var wp = new WordpressRss()
+                     {
+                         Channel = new WordpressChannel()
+                                   {
+                                       Title = channel.Element("title").Value,
+                                       Link = channel.Element("link").Value,
+                                       Description = channel.Element("description").Value,
+                                       LastBuildDate = Convert.ToDateTime(channel.Element("lastBuildDate").Value),
+                                       Language = channel.Element("language").Value,
+                                       Generator = channel.Element("generator").Value,
+                                       Items = channel.Elements("item")
+                                                      .Select(p => new WordpressItem()
+                                                                   {
+                                                                       Title = p.Element("title").Value,
+                                                                       Link = p.Element("link").Value,
+                                                                       Comments = p.Element("comments").Value,
+                                                                       PubDate = Convert.ToDateTime(p.Element("pubDate").Value),
+                                                                       Categories = p.Elements("category")
+                                                                                     .Select(q => new Category()
+                                                                                                  {
+                                                                                                      Domain = q.Attribute("domain").Value,
+                                                                                                      Value = q.Value
+                                                                                                  })
+                                                                                     .ToList(),
+                                                                       Guid = new Guid()
+                                                                              {
+                                                                                  IsPermaLink = Convert.ToBoolean(p.Element("guid")
+                                                                                                                   .Attribute("isPermaLink")
+                                                                                                                   .Value),
+                                                                                  Value = p.Element("guid").Value
+                                                                              },
+                                                                       Description = p.Element("description").Value
+                                                                   })
+                                                      .ToList()
+                                   }
+                     };
+
+            Assert.IsTrue(wp.Channel.Items.Any());
         }
 
         #endregion

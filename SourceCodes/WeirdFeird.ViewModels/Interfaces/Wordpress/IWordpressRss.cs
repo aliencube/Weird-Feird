@@ -1,4 +1,6 @@
-﻿namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Wordpress
+﻿using Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress;
+
+namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Wordpress
 {
     /// <summary>
     /// This provide interfaces to the WordpressRss class.

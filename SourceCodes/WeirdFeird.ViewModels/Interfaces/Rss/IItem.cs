@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
 
 namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Rss
 {
@@ -37,7 +38,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Rss
         /// <summary>
         /// Gets or sets one or more categories that the item belongs to.
         /// </summary>
-        IList<ICategory> Categories { get; set; }
+        IList<Category> Categories { get; set; }
 
         /// <summary>
         /// Gets or sets the URL of a page for comments relating to the item. [More](http://www.rssboard.org/rss-specification#ltcommentsgtSubelementOfLtitemgt).
