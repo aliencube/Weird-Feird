@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Aliencube.WeirdFeird.ViewModels.Enums
+﻿namespace Aliencube.WeirdFeird.ViewModels.Enums
 {
     /// <summary>
     /// This specifies the web service protocol for rssCloud interface.
