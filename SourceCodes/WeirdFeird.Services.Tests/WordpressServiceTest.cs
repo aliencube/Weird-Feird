@@ -100,6 +100,7 @@ namespace Aliencube.WeirdFeird.Services.Tests
         }
 
         [Test]
+        [TestCase("http://blog.aliencube.org/tag/weird-meetup/feed")]
         public async void GetWordpressRss_GivenFeedUrl_WordpressRssReturned(string feedUrl)
         {
             var feed = await this._wordpress.GetFeedXmlAsync(feedUrl);
@@ -124,7 +125,7 @@ namespace Aliencube.WeirdFeird.Services.Tests
                                                                        Categories = p.Elements("category")
                                                                                      .Select(q => new Category()
                                                                                                   {
-                                                                                                      Domain = q.Attribute("domain").Value,
+                                                                                                      Domain = q.Attribute("domain") != null ? q.Attribute("domain").Value : null,
                                                                                                       Value = q.Value
                                                                                                   })
                                                                                      .ToList(),
