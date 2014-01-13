@@ -1,38 +1,20 @@
-﻿using Aliencube.WeirdFeird.ViewModels.Extensions;
+﻿using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
+using Aliencube.WeirdFeird.ViewModels.Interfaces.Wordpress;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress
 {
-    public partial class WordpressRss : Extensions.Rss
+    /// <summary>
+    /// This represents the RSS feed entity for Wordpress.
+    /// </summary>
+    public partial class WordpressRss : RssFeed, IWordpressRss
     {
         #region Properties - Required
 
-        public new WordpressChannel Channel { get; set; }
+        /// <summary>
+        /// Gets or sets the WordpressChannel instance.
+        /// </summary>
+        public new IWordpressChannel Channel { get; set; }
 
         #endregion Properties - Required
-    }
-
-    public partial class WordpressChannel : Extensions.Channel
-    {
-        #region Properties - Optional
-
-        //AtomLink
-        public Extensions.Syndication Syndication { get; set; }
-
-        #endregion Properties - Optional
-    }
-
-    public partial class WordpressItem : Extensions.Item
-    {
-        #region Properties - Optional
-
-        public DublinCore DublinCore { get; set; }
-
-        public Content Content { get; set; }
-
-        public WellFormedWeb WellFormedWeb { get; set; }
-
-        public Slash Slash { get; set; }
-
-        #endregion Properties - Optional
     }
 }
