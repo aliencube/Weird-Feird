@@ -47,6 +47,11 @@
     <Compile Include="Enums\SkipDay.cs" />
     <Compile Include="Enums\TextType.cs" />
     <Compile Include="Enums\UpdatePeriod.cs" />
+    <Compile Include="Feeds\Extensions\CommentApi.cs" />
+    <Compile Include="Feeds\Extensions\Content.cs" />
+    <Compile Include="Feeds\Extensions\DublinCore.cs" />
+    <Compile Include="Feeds\Extensions\Slash.cs" />
+    <Compile Include="Feeds\Extensions\Syndication.cs" />
     <Compile Include="Feeds\Rss\Channel.cs" />
     <Compile Include="Feeds\Wordpress\WordpressChannel.cs" />
     <Compile Include="Feeds\Wordpress\WordpressItem.cs" />
