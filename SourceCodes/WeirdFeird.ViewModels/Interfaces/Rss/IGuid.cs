@@ -1,18 +1,16 @@
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Rss;
-
-namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
+namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Rss
 {
     /// <summary>
-    /// This represents an entity indicating the permalink of the <c>Item</c>.
+    /// This provides interfaces to the Guid class.
     /// </summary>
-    public class Guid : IGuid
+    public interface IGuid
     {
         #region Properties - Required
 
         /// <summary>
         /// Gets or sets the permalink URL.
         /// </summary>
-        public string Value { get; set; }
+        string Value { get; set; }
 
         #endregion Properties - Required
 
@@ -21,7 +19,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
         /// <summary>
         /// Gets or sets the value that specifies whether the GUID represents a permalink or not.
         /// </summary>
-        public bool? IsPermaLink { get; set; }
+        bool? IsPermaLink { get; set; }
 
         #endregion Properties - Optional
     }

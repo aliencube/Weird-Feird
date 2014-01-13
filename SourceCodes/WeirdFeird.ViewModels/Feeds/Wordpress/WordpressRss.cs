@@ -1,6 +1,6 @@
 ﻿using Aliencube.WeirdFeird.ViewModels.Extensions;
 
-namespace Aliencube.WeirdFeird.ViewModels
+namespace Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress
 {
     public partial class WordpressRss : Extensions.Rss
     {
@@ -16,7 +16,7 @@ namespace Aliencube.WeirdFeird.ViewModels
         #region Properties - Optional
 
         //AtomLink
-        public Syndication Syndication { get; set; }
+        public Extensions.Syndication Syndication { get; set; }
 
         #endregion Properties - Optional
     }

@@ -1,18 +1,16 @@
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Rss;
-
-namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
+namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Rss
 {
     /// <summary>
-    /// This represents an entity that describes a category of the <c>Item</c>.
+    /// This provides interfaces to the Category class.
     /// </summary>
-    public class Category : ICategory
+    public interface ICategory
     {
         #region Properties - Required
 
         /// <summary>
         /// Gets or sets the value of the category.
         /// </summary>
-        public string Value { get; set; }
+        string Value { get; set; }
 
         #endregion Properties - Required
 
@@ -21,7 +19,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
         /// <summary>
         /// Gets or sets the URL of the category.
         /// </summary>
-        public string Domain { get; set; }
+        string Domain { get; set; }
 
         #endregion Properties - Optional
     }

@@ -1,18 +1,16 @@
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Rss;
-
-namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
+﻿namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Rss
 {
     /// <summary>
-    /// This represents an entity indicating which RSS channel/feed the <c>Item</c> instance came from.
+    /// This provides interfaces to the Source class.
     /// </summary>
-    public class Source : ISource
+    public interface ISource
     {
         #region Properties - Required
 
         /// <summary>
         /// Gets or sets the value that describes the source URL.
         /// </summary>
-        public string Value { get; set; }
+        string Value { get; set; }
 
         #endregion Properties - Required
 
@@ -21,7 +19,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
         /// <summary>
         /// Gets or sets the URL where the RSS channel that the item came from.
         /// </summary>
-        public string Url { get; set; }
+        string Url { get; set; }
 
         #endregion Properties - Optional
     }
