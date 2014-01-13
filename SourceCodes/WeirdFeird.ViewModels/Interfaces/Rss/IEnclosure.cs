@@ -1,4 +1,4 @@
-﻿namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Rss
+namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Rss
 {
     /// <summary>
     /// This provides interfaces to the Enclosure class.

@@ -1,4 +1,4 @@
-﻿using Aliencube.WeirdFeird.ViewModels.Enums;
+using Aliencube.WeirdFeird.ViewModels.Enums;
 using System;
 using System.Collections.Generic;
 
