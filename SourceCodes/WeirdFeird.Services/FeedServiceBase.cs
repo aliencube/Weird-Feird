@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Aliencube.WeirdFeird.ViewModels.Feeds;
 
 namespace Aliencube.WeirdFeird.Services
 {
@@ -117,6 +118,13 @@ namespace Aliencube.WeirdFeird.Services
             return feed.Root.Name.ToString().ToLower() == "feed";
         }
 
+        /// <summary>
+        /// Gets the standardised feed instance from the feed XML document.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns the standardised feed instance.</returns>
+        /// <exception cref="ArgumentNullException">Throws when feed is NULL.</exception>
+        public abstract FeedAdapter GetFeed(XDocument feed);
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing,

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Aliencube.WeirdFeird.ViewModels.Feeds;
 
 namespace Aliencube.WeirdFeird.Services.Interfaces
 {
@@ -53,6 +54,14 @@ namespace Aliencube.WeirdFeird.Services.Interfaces
         /// <exception cref="ArgumentNullException">Throws when feed is NULL.</exception>
         /// <exception cref="InvalidFeedFormatException">Throws when no root element is found.</exception>
         bool IsAtom(XDocument feed);
+
+        /// <summary>
+        /// Gets the standardised feed instance from the feed XML document.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns the standardised feed instance.</returns>
+        /// <exception cref="ArgumentNullException">Throws when feed is NULL.</exception>
+        FeedAdapter GetFeed(XDocument feed);
 
         #endregion Methods
     }
