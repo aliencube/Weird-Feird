@@ -32,7 +32,7 @@ namespace Aliencube.WeirdFeird.Services.Tests
     public class WordpressServiceTest
     {
         private IWeirdFeirdSettings _settings;
-        private IProviderBase _wordpress;
+        private IWordpressRssService _wordpress;
 
         #region SetUp / TearDown
 
@@ -40,7 +40,7 @@ namespace Aliencube.WeirdFeird.Services.Tests
         public void Init()
         {
             this._settings = ConfigurationManager.GetSection("weirdFeird") as WeirdFeirdSettings;
-            this._wordpress = new WordpressProvider(this._settings);
+            this._wordpress = new WordpressRssService(this._settings);
         }
 
         [TearDown]
@@ -111,12 +111,12 @@ namespace Aliencube.WeirdFeird.Services.Tests
         [TestCase("http://blog.aliencube.org/tag/weird-meetup/feed")]
         public async void GetWordpressRss_GivenFeedUrl_WordpressRssReturned(string feedUrl)
         {
-            var content = XNamespace.Get("http://purl.org/rss/1.0/modules/content/");
-            var wfw = XNamespace.Get("http://wellformedweb.org/CommentAPI/");
-            var dc = XNamespace.Get("http://purl.org/dc/elements/1.1/");
-            var atom = XNamespace.Get("http://www.w3.org/2005/Atom");
-            var sy = XNamespace.Get("http://purl.org/rss/1.0/modules/syndication/");
-            var slash = XNamespace.Get("http://purl.org/rss/1.0/modules/slash/");
+            var content = this._wordpress.Namespaces["content"];
+            var wfw = this._wordpress.Namespaces["wfw"];
+            var dc = this._wordpress.Namespaces["dc"];
+            var atom = this._wordpress.Namespaces["atom"];
+            var sy = this._wordpress.Namespaces["sy"];
+            var slash = this._wordpress.Namespaces["slash"];
 
             var feed = await this._wordpress.GetFeedXmlAsync(feedUrl);
             var channel = feed.Root.Element("channel");

@@ -48,12 +48,13 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Exceptions\InvalidFeedFormatException.cs" />
-    <Compile Include="Interfaces\IProviderBase.cs" />
-    <Compile Include="WordpressProvider.cs" />
-    <Compile Include="ProviderBase.cs" />
-    <Compile Include="SyndicationBase.cs" />
+    <Compile Include="Interfaces\IFeedServiceBase.cs" />
+    <Compile Include="Interfaces\IRssFeedService.cs" />
+    <Compile Include="Interfaces\IWordpressRssService.cs" />
+    <Compile Include="WordpressRssService.cs" />
+    <Compile Include="FeedServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RssProvider.cs" />
+    <Compile Include="RssFeedService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
