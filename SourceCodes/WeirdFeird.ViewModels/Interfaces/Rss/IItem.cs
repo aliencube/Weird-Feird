@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
+using System;
 using System.Collections.Generic;
-using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
 
 namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Rss
 {

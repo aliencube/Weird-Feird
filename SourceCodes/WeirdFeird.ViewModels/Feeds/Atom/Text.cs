@@ -4,7 +4,7 @@ using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
 {
     /// <summary>
-    /// This represents an entity that contains human-readable text, usually in small quantities. 
+    /// This represents an entity that contains human-readable text, usually in small quantities.
     /// </summary>
     /// <remarks>
     /// The type attribute determines how this information is encoded (default="text").
@@ -20,7 +20,8 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
         {
             this.Type = TextType.Text;
         }
-        #endregion
+
+        #endregion Constructors
 
         #region Properties - Optional
 

@@ -7,6 +7,5 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
     /// </summary>
     public class Icon : CommonAttributes, IIcon
     {
-
     }
 }

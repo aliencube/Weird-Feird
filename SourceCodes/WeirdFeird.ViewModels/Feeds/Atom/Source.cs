@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
+using System;
 using System.Collections.Generic;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
 {

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Extensions;
+﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Extensions;
+using System.Collections.Generic;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Extensions
 {

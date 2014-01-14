@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress;
+﻿using Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress;
 using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
 using Aliencube.WeirdFeird.ViewModels.Interfaces.Extensions;
+using System.Collections.Generic;
 
 namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Wordpress
 {

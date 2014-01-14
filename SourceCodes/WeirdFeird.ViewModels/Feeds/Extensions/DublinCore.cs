@@ -1,6 +1,6 @@
-﻿using System;
-using Aliencube.WeirdFeird.ViewModels.Enums;
+﻿using Aliencube.WeirdFeird.ViewModels.Enums;
 using Aliencube.WeirdFeird.ViewModels.Interfaces.Extensions;
+using System;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Extensions
 {

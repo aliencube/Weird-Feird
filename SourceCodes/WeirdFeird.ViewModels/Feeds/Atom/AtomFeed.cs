@@ -1,10 +1,6 @@
-﻿using System;
+﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
 {
