@@ -1,16 +1,18 @@
-namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Atom
+﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
+
+namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
 {
     /// <summary>
-    /// This provides interfaces to the class of Person.
+    /// This represents an entity for a person.
     /// </summary>
-    public interface IPerson
+    public class Person : CommonAttributes, IPerson
     {
         #region Properties - Required
 
         /// <summary>
         /// Gets or sets the human-readable name for the person.
         /// </summary>
-        string Name { get; set; }
+        public string Name { get; set; }
 
         #endregion Properties - Required
 
@@ -19,12 +21,12 @@ namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Atom
         /// <summary>
         /// Gets or sets the home page for the person.
         /// </summary>
-        string Uri { get; set; }
+        public string Uri { get; set; }
 
         /// <summary>
         /// Gets or sets the email address for the person.
         /// </summary>
-        string Email { get; set; }
+        public string Email { get; set; }
 
         #endregion Properties - Optional
     }

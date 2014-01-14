@@ -3,7 +3,7 @@
     /// <summary>
     /// This provides interfaces to the Content class.
     /// </summary>
-    public interface IContent : ICommonAttribute
+    public interface IContent
     {
         #region Properties - Optional
 

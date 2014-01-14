@@ -3,7 +3,7 @@
     /// <summary>
     /// This provides interfaces to the Generator class.
     /// </summary>
-    public interface IGenerator : ICommonAttribute
+    public interface IGenerator
     {
         #region Properties - Optional
 

@@ -1,16 +1,18 @@
-﻿namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Atom
+﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
+
+namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
 {
     /// <summary>
-    /// This provides interfaces to the class of Link.
+    /// This represents an entity patterned after HTML's <c>link</c> element.
     /// </summary>
-    public interface ILink
+    public class Link : CommonAttributes, ILink
     {
         #region Properties - Required
 
         /// <summary>
         /// Gets or sets the URI of the referenced resource (typically a Web page).
         /// </summary>
-        string Href { get; set; }
+        public string Href { get; set; }
 
         #endregion Properties - Required
 
@@ -44,27 +46,27 @@
         ///         </item>
         ///     </list>
         /// </remarks>
-        string Rel { get; set; }
+        public string Rel { get; set; }
 
         /// <summary>
         /// Gets or sets the media type of the resource.
         /// </summary>
-        string Type { get; set; }
+        public string Type { get; set; }
 
         /// <summary>
         /// Gets or sets the language of the referenced resource.
         /// </summary>
-        string HrefLang { get; set; }
+        public string HrefLang { get; set; }
 
         /// <summary>
         /// Gets or sets human readable information about the link, typically for display purposes.
         /// </summary>
-        string Title { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// Gets or sets the length of the resource, in bytes.
         /// </summary>
-        int? Length { get; set; }
+        public int? Length { get; set; }
 
         #endregion Properties - Optional
     }

@@ -3,7 +3,7 @@
     /// <summary>
     /// This provides interfaces to the Id class.
     /// </summary>
-    public interface IId : ICommonAttribute
+    public interface IId
     {
     }
 }

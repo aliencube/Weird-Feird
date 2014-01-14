@@ -1,6 +1,6 @@
-﻿using System;
-using Aliencube.WeirdFeird.ViewModels.Enums;
+﻿using Aliencube.WeirdFeird.ViewModels.Enums;
 using Aliencube.WeirdFeird.ViewModels.Interfaces.Extensions;
+using System;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Extensions
 {
@@ -9,6 +9,18 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Extensions
     /// </summary>
     public class Syndication : ISyndication
     {
+        #region Constructors
+
+        /// <summary>
+        /// Initialises a new instance of the Syndication class.
+        /// </summary>
+        public Syndication()
+        {
+            this.UpdatePeriod = UpdatePeriod.Daily;
+        }
+
+        #endregion Constructors
+
         #region Properties - Optional
 
         /// <summary>

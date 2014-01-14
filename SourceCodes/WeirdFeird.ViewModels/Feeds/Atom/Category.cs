@@ -1,16 +1,18 @@
-﻿namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Atom
+﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
+
+namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
 {
     /// <summary>
-    /// This provides interfaces to the Category class.
+    /// This represents an entity for a category that the feed belongs to.
     /// </summary>
-    public interface ICategory
+    public class Category : CommonAttributes, ICategory
     {
         #region Properties - Required
 
         /// <summary>
         /// Gets or sets the name of the category.
         /// </summary>
-        string Term { get; set; }
+        public string Term { get; set; }
 
         #endregion Properties - Required
 
@@ -19,12 +21,12 @@
         /// <summary>
         /// Gets or sets the categorization scheme via a URI.
         /// </summary>
-        string Scheme { get; set; }
+        public string Scheme { get; set; }
 
         /// <summary>
         /// Gets or sets a human-readable label for display.
         /// </summary>
-        string Label { get; set; }
+        public string Label { get; set; }
 
         #endregion Properties - Optional
     }

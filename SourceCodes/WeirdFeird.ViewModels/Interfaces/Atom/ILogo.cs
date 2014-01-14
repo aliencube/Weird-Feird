@@ -3,7 +3,7 @@
     /// <summary>
     /// This provides interfaces to the Logo class.
     /// </summary>
-    public interface ILogo : ICommonAttribute
+    public interface ILogo
     {
     }
 }

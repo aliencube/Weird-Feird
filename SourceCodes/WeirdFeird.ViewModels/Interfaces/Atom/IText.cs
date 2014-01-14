@@ -5,7 +5,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Atom
     /// <summary>
     /// This provides interfaces to the class of Text.
     /// </summary>
-    public interface IText : ICommonAttribute
+    public interface IText
     {
         #region Properties - Optional
 

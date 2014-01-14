@@ -3,7 +3,7 @@
     /// <summary>
     /// This provides interfaces to the Icon class.
     /// </summary>
-    public interface IIcon : ICommonAttribute
+    public interface IIcon
     {
     }
 }

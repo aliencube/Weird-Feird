@@ -11,12 +11,16 @@ using System.Xml.Schema;
 using Aliencube.WeirdFeird.Configurations;
 using Aliencube.WeirdFeird.Configurations.Interfaces;
 using Aliencube.WeirdFeird.Services.Interfaces;
-using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
+using Aliencube.WeirdFeird.ViewModels.Enums;
+using Aliencube.WeirdFeird.ViewModels.Feeds.Atom;
+using Aliencube.WeirdFeird.ViewModels.Feeds.Extensions;
 using Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress;
 using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
 using Aliencube.WeirdFeird.ViewModels.Interfaces.Wordpress;
 using NUnit.Framework;
 using NSubstitute;
+using Category = Aliencube.WeirdFeird.ViewModels.Feeds.Rss.Category;
+using Content = Aliencube.WeirdFeird.ViewModels.Feeds.Extensions.Content;
 using Guid = Aliencube.WeirdFeird.ViewModels.Feeds.Rss.Guid;
 
 namespace Aliencube.WeirdFeird.Services.Tests
@@ -99,10 +103,21 @@ namespace Aliencube.WeirdFeird.Services.Tests
             Assert.AreEqual(expected, isWordpress);
         }
 
+        /// <summary>
+        /// Tests to create a data container instance derived from Wordpress RSS feed.
+        /// </summary>
+        /// <param name="feedUrl">Feed URL.</param>
         [Test]
         [TestCase("http://blog.aliencube.org/tag/weird-meetup/feed")]
         public async void GetWordpressRss_GivenFeedUrl_WordpressRssReturned(string feedUrl)
         {
+            var content = XNamespace.Get("http://purl.org/rss/1.0/modules/content/");
+            var wfw = XNamespace.Get("http://wellformedweb.org/CommentAPI/");
+            var dc = XNamespace.Get("http://purl.org/dc/elements/1.1/");
+            var atom = XNamespace.Get("http://www.w3.org/2005/Atom");
+            var sy = XNamespace.Get("http://purl.org/rss/1.0/modules/syndication/");
+            var slash = XNamespace.Get("http://purl.org/rss/1.0/modules/slash/");
+
             var feed = await this._wordpress.GetFeedXmlAsync(feedUrl);
             var channel = feed.Root.Element("channel");
             var wp = new WordpressRss()
@@ -110,10 +125,21 @@ namespace Aliencube.WeirdFeird.Services.Tests
                          Channel = new WordpressChannel()
                                    {
                                        Title = channel.Element("title").Value,
+                                       AtomLink = new Link()
+                                                  {
+                                                      Href = channel.Element(atom + "link").Attribute("href").Value,
+                                                      Rel = channel.Element(atom + "link").Attribute("rel").Value,
+                                                      Type = channel.Element(atom + "link").Attribute("type").Value,
+                                                  },
                                        Link = channel.Element("link").Value,
                                        Description = channel.Element("description").Value,
                                        LastBuildDate = Convert.ToDateTime(channel.Element("lastBuildDate").Value),
                                        Language = channel.Element("language").Value,
+                                       Syndication = new Syndication()
+                                                     {
+                                                         UpdatePeriod = (UpdatePeriod)Enum.Parse(typeof(UpdatePeriod), channel.Element(sy + "updatePeriod").Value, true),
+                                                         UpdateFrequency = Convert.ToInt32(channel.Element(sy + "updateFrequency").Value)
+                                                     },
                                        Generator = channel.Element("generator").Value,
                                        Items = channel.Elements("item")
                                                       .Select(p => new WordpressItem()
@@ -122,6 +148,7 @@ namespace Aliencube.WeirdFeird.Services.Tests
                                                                        Link = p.Element("link").Value,
                                                                        Comments = p.Element("comments").Value,
                                                                        PubDate = Convert.ToDateTime(p.Element("pubDate").Value),
+                                                                       DublinCore = new DublinCore() { Creator = p.Element(dc + "creator").Value },
                                                                        Categories = p.Elements("category")
                                                                                      .Select(q => new Category()
                                                                                                   {
@@ -136,7 +163,10 @@ namespace Aliencube.WeirdFeird.Services.Tests
                                                                                                                    .Value),
                                                                                   Value = p.Element("guid").Value
                                                                               },
-                                                                       Description = p.Element("description").Value
+                                                                       Description = p.Element("description").Value,
+                                                                       Content = new Content() { Encoded = p.Element(content + "encoded").Value },
+                                                                       WellFormedWeb = new WellFormedWeb() { CommentRss = p.Element(wfw + "commentRss").Value },
+                                                                       Slash = new Slash() { Comments = Convert.ToInt32(p.Element(slash + "comments").Value)}
                                                                    })
                                                       .ToList()
                                    }
