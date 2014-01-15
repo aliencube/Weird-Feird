@@ -43,6 +43,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FeedSchemata", "FeedSchemat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.ViewModels", "WeirdFeird.ViewModels\WeirdFeird.ViewModels.csproj", "{69CA440E-46D9-4906-A49C-79F0DA3992B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Extensions", "WeirdFeird.Extensions\WeirdFeird.Extensions.csproj", "{31CC8FD6-37C2-4BC9-A48C-2CC73994616A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Exceptions", "WeirdFeird.Exceptions\WeirdFeird.Exceptions.csproj", "{346D2014-306D-4CBD-9F81-3E8A8B3A79EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{69CA440E-46D9-4906-A49C-79F0DA3992B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69CA440E-46D9-4906-A49C-79F0DA3992B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69CA440E-46D9-4906-A49C-79F0DA3992B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31CC8FD6-37C2-4BC9-A48C-2CC73994616A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31CC8FD6-37C2-4BC9-A48C-2CC73994616A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31CC8FD6-37C2-4BC9-A48C-2CC73994616A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31CC8FD6-37C2-4BC9-A48C-2CC73994616A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{346D2014-306D-4CBD-9F81-3E8A8B3A79EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{346D2014-306D-4CBD-9F81-3E8A8B3A79EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{346D2014-306D-4CBD-9F81-3E8A8B3A79EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{346D2014-306D-4CBD-9F81-3E8A8B3A79EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

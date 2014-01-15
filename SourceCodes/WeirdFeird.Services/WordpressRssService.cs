@@ -1,6 +1,6 @@
 ﻿using Aliencube.WeirdFeird.Configurations.Interfaces;
+using Aliencube.WeirdFeird.Extensions;
 using Aliencube.WeirdFeird.Services.Interfaces;
-using Aliencube.WeirdFeird.ViewModels.Enums;
 using Aliencube.WeirdFeird.ViewModels.Feeds;
 using Aliencube.WeirdFeird.ViewModels.Feeds.Atom;
 using Aliencube.WeirdFeird.ViewModels.Feeds.Extensions;
@@ -137,26 +137,25 @@ namespace Aliencube.WeirdFeird.Services
             var sy = this.Namespaces["sy"];
             var wp = new WordpressChannel()
                      {
-                         Title = this.GetElementValue(channel.Element("title"), true),
+                         Title = channel.Element("title").ToString(true),
                          AtomLink = new Link()
                                     {
-                                        Href = this.GetAttributeValue("href", channel.Element(atom + "link"), true),
-                                        Rel = this.GetAttributeValue("rel", channel.Element(atom + "link")),
-                                        Type = this.GetAttributeValue("type", channel.Element(atom + "link")),
+                                        Href = channel.Element(atom + "link").GetAttribute("href").ToString(true),
+
+                                        Rel = channel.Element(atom + "link").GetAttribute("rel").ToString(false),
+                                        Type = channel.Element(atom + "link").GetAttribute("type").ToString(false),
                                     },
-                         Link = this.GetElementValue(channel.Element("link"), true),
-                         Description = this.GetElementValue(channel.Element("description"), true),
+                         Link = channel.Element("link").ToString(true),
+                         Description = channel.Element("description").ToString(true),
 
                          LastBuildDate = Convert.ToDateTime(this.GetElementValue(channel.Element("lastBuildDate"))),
-                         Language = this.GetElementValue(channel.Element("language")),
+                         Language = channel.Element("language").ToString(false),
                          Syndication = new Syndication()
                                        {
-                                           // TODO: Extension methods for conversion with default value.
-                                           UpdatePeriod = (UpdatePeriod)Enum.Parse(typeof (UpdatePeriod), this.GetElementValue(channel.Element(sy + "updatePeriod")), true),
-                                           // TODO: Extension methods for conversion with default value.
-                                           UpdateFrequency = Convert.ToInt32(this.GetElementValue(channel.Element(sy + "updateFrequency")))
+                                           UpdatePeriod = channel.Element(sy + "updatePeriod").ToUpdaetPeriod(),
+                                           UpdateFrequency = channel.Element(sy + "updateFrequency").ToInt32(1)
                                        },
-                         Generator = this.GetElementValue(channel.Element("generator")),
+                         Generator = channel.Element("generator").ToString(false),
                          Items = this.GetWordpressItems(channel.Elements("item").ToList()),
                      };
             return wp;
@@ -256,7 +255,7 @@ namespace Aliencube.WeirdFeird.Services
         {
             if (feed == null)
                 throw new ArgumentNullException("feed", "No feed provided");
-            
+
             var wp = this.GetWordpressRss(feed);
 
             throw new NotImplementedException();

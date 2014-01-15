@@ -1,5 +1,5 @@
 ﻿using Aliencube.WeirdFeird.Configurations.Interfaces;
-using Aliencube.WeirdFeird.Services.Exceptions;
+using Aliencube.WeirdFeird.Exceptions;
 using Aliencube.WeirdFeird.Services.Interfaces;
 using System;
 using System.Xml.Linq;

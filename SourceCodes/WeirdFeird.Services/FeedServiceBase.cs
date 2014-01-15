@@ -1,5 +1,5 @@
 ﻿using Aliencube.WeirdFeird.Configurations.Interfaces;
-using Aliencube.WeirdFeird.Services.Exceptions;
+using Aliencube.WeirdFeird.Exceptions;
 using Aliencube.WeirdFeird.Services.Interfaces;
 using Aliencube.WeirdFeird.ViewModels.Feeds;
 using System;
@@ -132,7 +132,7 @@ namespace Aliencube.WeirdFeird.Services
         /// <param name="required">Value that specifies whether the value is required or not. Default value is <c>False</c>.</param>
         /// <returns>Returns the element value.</returns>
         /// <exception cref="ArgumentNullException">Throws when element is NULL.</exception>
-        /// <exception cref="RequiredFeedAttributeException">Throws when no element value is set.</exception>
+        /// <exception cref="RequiredFeedElementException">Throws when no element value is set.</exception>
         public string GetElementValue(XElement element, bool required = false)
         {
             if (element == null)

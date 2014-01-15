@@ -1,8 +1,6 @@
-﻿using System.Collections;
+﻿using Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress;
 using System.Collections.Generic;
-using Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress;
 using System.Xml.Linq;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Wordpress;
 
 namespace Aliencube.WeirdFeird.Services.Interfaces
 {

@@ -1,42 +1,42 @@
-using System;
+﻿using System;
 using System.Runtime.Serialization;
 
-namespace Aliencube.WeirdFeird.Services.Exceptions
+namespace Aliencube.WeirdFeird.Exceptions
 {
     /// <summary>
-    /// This represents an entity that is thrown when an element value is not set.
+    /// This represents an entity that is thrown when a feed format is invalid.
     /// </summary>
-    public class RequiredFeedElementException : ApplicationException
+    public class InvalidFeedFormatException : ApplicationException
     {
         /// <summary>
-        /// Initialises a new instance of the RequiredFeedElementException class.
+        /// Initialises a new instance of the InvalidFeedFormatException class.
         /// </summary>
-        public RequiredFeedElementException()
+        public InvalidFeedFormatException()
             : base()
         {
         }
 
         /// <summary>
-        /// Initialises a new instance of the RequiredFeedElementException class.
+        /// Initialises a new instance of the InvalidFeedFormatException class.
         /// </summary>
         /// <param name="info">The object that holds the serialised object data.</param>
         /// <param name="context">The contextual information about the source or destination.</param>
-        public RequiredFeedElementException(SerializationInfo info, StreamingContext context)
+        public InvalidFeedFormatException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
 
         /// <summary>
-        /// Initialises a new instance of the RequiredFeedElementException class.
+        /// Initialises a new instance of the InvalidFeedFormatException class.
         /// </summary>
         /// <param name="message">A message that describes the error.</param>
-        public RequiredFeedElementException(string message)
+        public InvalidFeedFormatException(string message)
             : base(message)
         {
         }
 
         /// <summary>
-        /// Initialises a new instance of the RequiredFeedElementException class.
+        /// Initialises a new instance of the InvalidFeedFormatException class.
         /// </summary>
         /// <param name="message">A message that describes the error.</param>
         /// <param name="innerException">
@@ -44,7 +44,7 @@ namespace Aliencube.WeirdFeird.Services.Exceptions
         /// If the innerException parameter is not a null reference,
         /// the current exception is raised in a catch block that handles the inner exception.
         /// </param>
-        public RequiredFeedElementException(string message, Exception innerException)
+        public InvalidFeedFormatException(string message, Exception innerException)
             : base(message, innerException)
         {
         }

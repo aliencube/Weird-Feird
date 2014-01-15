@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Aliencube.WeirdFeird.Services.Exceptions
+namespace Aliencube.WeirdFeird.Exceptions
 {
     /// <summary>
     /// This represents an entity that is thrown when an atttribute value is not set.
