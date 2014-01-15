@@ -1,10 +1,9 @@
-﻿using Aliencube.WeirdFeird.Services.Exceptions;
+﻿using Aliencube.WeirdFeird.ViewModels.Feeds;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Aliencube.WeirdFeird.ViewModels.Feeds;
 
 namespace Aliencube.WeirdFeird.Services.Interfaces
 {
@@ -34,7 +33,6 @@ namespace Aliencube.WeirdFeird.Services.Interfaces
         /// </summary>
         /// <param name="feedUrl">Feed URL.</param>
         /// <returns>Returns the XML feed contents from given feed URL asynchronously.</returns>
-        /// <exception cref="ArgumentNullException">Throws when <c>feedUrl</c> is NULL or whitespace.</exception>
         Task<XDocument> GetFeedXmlAsync(string feedUrl);
 
         /// <summary>
@@ -42,8 +40,6 @@ namespace Aliencube.WeirdFeird.Services.Interfaces
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
         /// <returns>Returns <c>True</c>, if the name of the root element is "rss"; otherwise returns <c>False</c>.</returns>
-        /// <exception cref="ArgumentNullException">Throws when feed is NULL.</exception>
-        /// <exception cref="InvalidFeedFormatException">Throws when no root element is found.</exception>
         bool IsRss(XDocument feed);
 
         /// <summary>
@@ -51,16 +47,45 @@ namespace Aliencube.WeirdFeird.Services.Interfaces
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
         /// <returns>Returns <c>True</c>, if the name of the root element is "feed"; otherwise returns <c>False</c>.</returns>
-        /// <exception cref="ArgumentNullException">Throws when feed is NULL.</exception>
-        /// <exception cref="InvalidFeedFormatException">Throws when no root element is found.</exception>
         bool IsAtom(XDocument feed);
+
+        /// <summary>
+        /// Gets the root element from the feed document.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns the XElement channel instance.</returns>
+        XElement GetRoot(XDocument feed);
+
+        /// <summary>
+        /// Gets the value from the XElement instance.
+        /// </summary>
+        /// <param name="element">XElement instance.</param>
+        /// <param name="required">Value that specifies whether the value is required or not. Default value is <c>False</c>.</param>
+        /// <returns>Returns the element value.</returns>
+        string GetElementValue(XElement element, bool required = false);
+
+        /// <summary>
+        /// Gets the value from the XAttribute instance.
+        /// </summary>
+        /// <param name="attribute">Name of attribute.</param>
+        /// <param name="element">XElement instance.</param>
+        /// <param name="required">Value that specifies whether the value is required or not. Default value is <c>False</c>.</param>
+        /// <returns>Returns the attribute value.</returns>
+        string GetAttributeValue(string attribute, XElement element, bool required = false);
+
+        /// <summary>
+        /// Gets the value from the XAttribute instance.
+        /// </summary>
+        /// <param name="attribute">XAttribute instance.</param>
+        /// <param name="required">Value that specifies whether the value is required or not. Default value is <c>False</c>.</param>
+        /// <returns>Returns the attribute value.</returns>
+        string GetAttributeValue(XAttribute attribute, bool required = false);
 
         /// <summary>
         /// Gets the standardised feed instance from the feed XML document.
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
         /// <returns>Returns the standardised feed instance.</returns>
-        /// <exception cref="ArgumentNullException">Throws when feed is NULL.</exception>
         FeedAdapter GetFeed(XDocument feed);
 
         #endregion Methods

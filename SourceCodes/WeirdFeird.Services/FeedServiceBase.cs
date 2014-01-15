@@ -1,6 +1,7 @@
 ﻿using Aliencube.WeirdFeird.Configurations.Interfaces;
 using Aliencube.WeirdFeird.Services.Exceptions;
 using Aliencube.WeirdFeird.Services.Interfaces;
+using Aliencube.WeirdFeird.ViewModels.Feeds;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -8,7 +9,6 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Aliencube.WeirdFeird.ViewModels.Feeds;
 
 namespace Aliencube.WeirdFeird.Services
 {
@@ -87,17 +87,11 @@ namespace Aliencube.WeirdFeird.Services
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
         /// <returns>Returns <c>True</c>, if the name of the root element is "rss"; otherwise returns <c>False</c>.</returns>
-        /// <exception cref="ArgumentNullException">Throws when feed is NULL.</exception>
-        /// <exception cref="InvalidFeedFormatException">Throws when no root element is found.</exception>
         public bool IsRss(XDocument feed)
         {
-            if (feed == null)
-                throw new ArgumentNullException("feed", "No feed provided");
+            var root = this.GetRoot(feed);
 
-            if (feed.Root == null)
-                throw new InvalidFeedFormatException("No root element found");
-
-            return feed.Root.Name.ToString().ToLower() == "rss";
+            return root.Name.ToString().ToLower() == "rss";
         }
 
         /// <summary>
@@ -105,17 +99,93 @@ namespace Aliencube.WeirdFeird.Services
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
         /// <returns>Returns <c>True</c>, if the name of the root element is "feed"; otherwise returns <c>False</c>.</returns>
+        public bool IsAtom(XDocument feed)
+        {
+            var root = this.GetRoot(feed);
+
+            return root.Name.ToString().ToLower() == "feed";
+        }
+
+        /// <summary>
+        /// Gets the root element from the feed document.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns the XElement channel instance.</returns>
         /// <exception cref="ArgumentNullException">Throws when feed is NULL.</exception>
         /// <exception cref="InvalidFeedFormatException">Throws when no root element is found.</exception>
-        public bool IsAtom(XDocument feed)
+        public XElement GetRoot(XDocument feed)
         {
             if (feed == null)
                 throw new ArgumentNullException("feed", "No feed provided");
 
-            if (feed.Root == null)
+            var root = feed.Root;
+            if (root == null)
                 throw new InvalidFeedFormatException("No root element found");
 
-            return feed.Root.Name.ToString().ToLower() == "feed";
+            return root;
+        }
+
+        /// <summary>
+        /// Gets the value from the XElement instance.
+        /// </summary>
+        /// <param name="element">XElement instance.</param>
+        /// <param name="required">Value that specifies whether the value is required or not. Default value is <c>False</c>.</param>
+        /// <returns>Returns the element value.</returns>
+        /// <exception cref="ArgumentNullException">Throws when element is NULL.</exception>
+        /// <exception cref="RequiredFeedAttributeException">Throws when no element value is set.</exception>
+        public string GetElementValue(XElement element, bool required = false)
+        {
+            if (element == null)
+                throw new ArgumentNullException("element", "No element provided");
+
+            var value = element.Value;
+            if (required && String.IsNullOrWhiteSpace(value))
+                throw new RequiredFeedElementException("Value must be set");
+
+            return value;
+        }
+
+        /// <summary>
+        /// Gets the value from the XAttribute instance.
+        /// </summary>
+        /// <param name="attribute">Name of attribute.</param>
+        /// <param name="element">XElement instance.</param>
+        /// <param name="required">Value that specifies whether the value is required or not. Default value is <c>False</c>.</param>
+        /// <returns>Returns the attribute value.</returns>
+        /// <exception cref="ArgumentNullException">Throws when attribute or element is NULL.</exception>
+        /// <exception cref="InvalidFeedFormatException">Throws when no attribute is found.</exception>
+        public string GetAttributeValue(string attribute, XElement element, bool required = false)
+        {
+            if (String.IsNullOrWhiteSpace(attribute))
+                throw new ArgumentNullException("attribute", "No attribute provided");
+            if (element == null)
+                throw new ArgumentNullException("element", "No element provided");
+
+            var attr = element.Attribute(attribute);
+            if (attr == null)
+                throw new InvalidFeedFormatException("No attribute found");
+
+            return this.GetAttributeValue(attr, required);
+        }
+
+        /// <summary>
+        /// Gets the value from the XAttribute instance.
+        /// </summary>
+        /// <param name="attribute">XAttribute instance.</param>
+        /// <param name="required">Value that specifies whether the value is required or not. Default value is <c>False</c>.</param>
+        /// <returns>Returns the attribute value.</returns>
+        /// <exception cref="ArgumentNullException">Throws when attribute is NULL.</exception>
+        /// <exception cref="RequiredFeedAttributeException">Throws when no attribute value is set.</exception>
+        public string GetAttributeValue(XAttribute attribute, bool required = false)
+        {
+            if (attribute == null)
+                throw new ArgumentNullException("attribute", "No attribute provided");
+
+            var value = attribute.Value;
+            if (required && String.IsNullOrWhiteSpace(value))
+                throw new RequiredFeedAttributeException("Value must be set");
+
+            return value;
         }
 
         /// <summary>
@@ -123,7 +193,6 @@ namespace Aliencube.WeirdFeird.Services
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
         /// <returns>Returns the standardised feed instance.</returns>
-        /// <exception cref="ArgumentNullException">Throws when feed is NULL.</exception>
         public abstract FeedAdapter GetFeed(XDocument feed);
 
         /// <summary>

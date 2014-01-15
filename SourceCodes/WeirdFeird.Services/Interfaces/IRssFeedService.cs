@@ -1,6 +1,4 @@
-﻿using Aliencube.WeirdFeird.Services.Exceptions;
-using System;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace Aliencube.WeirdFeird.Services.Interfaces
 {
@@ -16,9 +14,28 @@ namespace Aliencube.WeirdFeird.Services.Interfaces
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
         /// <returns>Returns <c>True</c>, if the generator element identifies it is a Wordpress feed; otherwise returns <c>False</c>.</returns>
-        /// <exception cref="ArgumentNullException">Throws when feed is NULL.</exception>
-        /// <exception cref="InvalidFeedFormatException">Throws when no root element is found.</exception>
         bool IsWordpress(XDocument feed);
+
+        /// <summary>
+        /// Gets the channel element from the feed document.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns the XElement channel instance.</returns>
+        XElement GetChannel(XDocument feed);
+
+        /// <summary>
+        /// Gets the generator element from the feed document.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns the XElement generator instance.</returns>
+        XElement GetGenerator(XDocument feed);
+
+        /// <summary>
+        /// Gets the generator element from the channel element.
+        /// </summary>
+        /// <param name="channel">XElement channel instance.</param>
+        /// <returns>Returns the XElement generator instance.</returns>
+        XElement GetGenerator(XElement channel);
 
         #endregion Methods
     }

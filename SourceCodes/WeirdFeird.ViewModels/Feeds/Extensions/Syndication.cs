@@ -17,6 +17,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Extensions
         public Syndication()
         {
             this.UpdatePeriod = UpdatePeriod.Daily;
+            this.UpdateFrequency = 1;
         }
 
         #endregion Constructors

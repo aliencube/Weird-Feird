@@ -1,18 +1,17 @@
-﻿using System;
-using Aliencube.WeirdFeird.Configurations.Interfaces;
-using Aliencube.WeirdFeird.Services.Exceptions;
+﻿using Aliencube.WeirdFeird.Configurations.Interfaces;
 using Aliencube.WeirdFeird.Services.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Xml.Linq;
 using Aliencube.WeirdFeird.ViewModels.Enums;
 using Aliencube.WeirdFeird.ViewModels.Feeds;
 using Aliencube.WeirdFeird.ViewModels.Feeds.Atom;
 using Aliencube.WeirdFeird.ViewModels.Feeds.Extensions;
 using Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using Category = Aliencube.WeirdFeird.ViewModels.Feeds.Rss.Category;
-using Content = Aliencube.WeirdFeird.ViewModels.Feeds.Atom.Content;
+using Content = Aliencube.WeirdFeird.ViewModels.Feeds.Extensions.Content;
 using Guid = Aliencube.WeirdFeird.ViewModels.Feeds.Rss.Guid;
 
 namespace Aliencube.WeirdFeird.Services
@@ -87,26 +86,164 @@ namespace Aliencube.WeirdFeird.Services
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
         /// <returns>Returns <c>True</c>, if the generator element identifies it is a Wordpress feed; otherwise returns <c>False</c>.</returns>
-        /// <exception cref="ArgumentNullException">Throws when feed is NULL.</exception>
-        /// <exception cref="InvalidFeedFormatException">Throws when no root element, channel element or generator element is found.</exception>
         public override bool IsWordpress(XDocument feed)
         {
-            if (feed == null)
-                throw new ArgumentNullException("feed", "No feed provided");
-
-            if (feed.Root == null)
-                throw new InvalidFeedFormatException("No root element found");
-
-            var channel = feed.Root.Element("channel");
-            if (channel == null)
-                throw new InvalidFeedFormatException("No channel element found");
-
-            var generator = channel.Element("generator");
+            var generator = this.GetGenerator(feed);
             if (generator == null)
-                throw new InvalidFeedFormatException("No generator element found");
+                return false;
 
             var value = generator.Value;
             return this.Generator.IsMatch(value);
+        }
+
+        /// <summary>
+        /// Gets the Wordpress RSS instance from the feed document.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns the Wordpress RSS instance.</returns>
+        public WordpressRss GetWordpressRss(XDocument feed)
+        {
+            var channel = this.GetChannel(feed);
+            return this.GetWordpressRss(channel);
+        }
+
+        /// <summary>
+        /// Gets the Wordpress RSS instance from the channel element.
+        /// </summary>
+        /// <param name="channel">XElement channel instance.</param>
+        /// <returns>Returns the Wordpress RSS instance.</returns>
+        /// <exception cref="ArgumentNullException">Throws when channel is NULL.</exception>
+        public WordpressRss GetWordpressRss(XElement channel)
+        {
+            if (channel == null)
+                throw new ArgumentNullException("channel", "No channel provided");
+
+            var wp = new WordpressRss() { Channel = this.GetWordpressChannel(channel) };
+            return wp;
+        }
+
+        /// <summary>
+        /// Gets the Wordpress Channel instance from the channel element.
+        /// </summary>
+        /// <param name="channel">XElement channel instance.</param>
+        /// <returns>Returns the Wordpress Channel instance.</returns>
+        /// <exception cref="ArgumentNullException">Throws when channel is NULL.</exception>
+        public WordpressChannel GetWordpressChannel(XElement channel)
+        {
+            if (channel == null)
+                throw new ArgumentNullException("channel", "No channel provided");
+
+            var atom = this.Namespaces["atom"];
+            var sy = this.Namespaces["sy"];
+            var wp = new WordpressChannel()
+                     {
+                         Title = this.GetElementValue(channel.Element("title"), true),
+                         AtomLink = new Link()
+                                    {
+                                        Href = this.GetAttributeValue("href", channel.Element(atom + "link"), true),
+                                        Rel = this.GetAttributeValue("rel", channel.Element(atom + "link")),
+                                        Type = this.GetAttributeValue("type", channel.Element(atom + "link")),
+                                    },
+                         Link = this.GetElementValue(channel.Element("link"), true),
+                         Description = this.GetElementValue(channel.Element("description"), true),
+
+                         LastBuildDate = Convert.ToDateTime(this.GetElementValue(channel.Element("lastBuildDate"))),
+                         Language = this.GetElementValue(channel.Element("language")),
+                         Syndication = new Syndication()
+                                       {
+                                           // TODO: Extension methods for conversion with default value.
+                                           UpdatePeriod = (UpdatePeriod)Enum.Parse(typeof (UpdatePeriod), this.GetElementValue(channel.Element(sy + "updatePeriod")), true),
+                                           // TODO: Extension methods for conversion with default value.
+                                           UpdateFrequency = Convert.ToInt32(this.GetElementValue(channel.Element(sy + "updateFrequency")))
+                                       },
+                         Generator = this.GetElementValue(channel.Element("generator")),
+                         Items = this.GetWordpressItems(channel.Elements("item").ToList()),
+                     };
+            return wp;
+        }
+
+        /// <summary>
+        /// Gets the list of Wordpress item entries from the channel element.
+        /// </summary>
+        /// <param name="channel">XElement channel instance.</param>
+        /// <returns>Returns the list of Wordpress Item instances.</returns>
+        /// <exception cref="ArgumentNullException">Throws when channel is NULL.</exception>
+        public IList<WordpressItem> GetWordpressItems(XElement channel)
+        {
+            if (channel == null)
+                throw new ArgumentNullException("channel", "No channel provided");
+
+            var items = channel.Elements("item").ToList();
+            return this.GetWordpressItems(items);
+        }
+
+        /// <summary>
+        /// Gets the list of Wordpress item entries from the list of item elements.
+        /// </summary>
+        /// <param name="items">List of XElement item instances.</param>
+        /// <returns>Returns the list of Wordpress Item instances.</returns>
+        /// <exception cref="ArgumentNullException">Throws when items is NULL or does not contain any item.</exception>
+        public IList<WordpressItem> GetWordpressItems(IList<XElement> items)
+        {
+            if (items == null || !items.Any())
+                throw new ArgumentNullException("items", "No items provided");
+
+            var content = this.Namespaces["content"];
+            var wfw = this.Namespaces["wfw"];
+            var dc = this.Namespaces["dc"];
+            var slash = this.Namespaces["slash"];
+
+            var wp = items.Select(p =>
+                                  new WordpressItem()
+                                  {
+                                      Title = this.GetElementValue(p.Element("title"), true),
+                                      Link = this.GetElementValue(p.Element("link"), true),
+                                      Description = this.GetElementValue(p.Element("description"), true),
+
+                                      Comments = this.GetElementValue(p.Element("comments")),
+                                      // TODO: Extension methods for conversion with default value.
+                                      PubDate = Convert.ToDateTime(this.GetElementValue(p.Element("pubDate"))),
+                                      DublinCore = new DublinCore()
+                                                   {
+                                                       Creator = this.GetElementValue(p.Element(dc + "creator"))
+                                                   },
+                                      // TODO: Implementation for GetCategories() method.
+                                      Categories = p.Elements("category")
+                                                    .Select(q =>
+                                                            new Category()
+                                                            {
+                                                                Domain =
+                                                                    q.Attribute("domain") != null
+                                                                        ? q.Attribute("domain").Value
+                                                                        : null,
+                                                                Value = q.Value
+                                                            })
+                                                    .ToList(),
+                                      Guid = new Guid()
+                                             {
+                                                 IsPermaLink =
+                                                     Convert.ToBoolean(this.GetAttributeValue("isPermaLink",
+                                                                                              p.Element("guid"))),
+                                                 Value = this.GetElementValue(p.Element("guid"))
+                                             },
+                                      Content = new Content()
+                                                {
+                                                    Encoded = this.GetElementValue(p.Element(content + "encoded"))
+                                                },
+                                      WellFormedWeb = new WellFormedWeb()
+                                                      {
+                                                          CommentRss =
+                                                              this.GetElementValue(p.Element(wfw + "commentRss"))
+                                                      },
+                                      Slash = new Slash()
+                                              {
+                                                  // TODO: Extension methods for conversion with default value.
+                                                  Comments =
+                                                      Convert.ToInt32(this.GetElementValue(p.Element(slash + "comments")))
+                                              }
+                                  })
+                          .ToList();
+            return wp;
         }
 
         /// <summary>
@@ -115,77 +252,12 @@ namespace Aliencube.WeirdFeird.Services
         /// <param name="feed">XDocument feed instance.</param>
         /// <returns>Returns the standardised feed instance.</returns>
         /// <exception cref="ArgumentNullException">Throws when feed is NULL.</exception>
-        /// <exception cref="InvalidFeedFormatException">Throws when no root element or channel element is found.</exception>
         public override FeedAdapter GetFeed(XDocument feed)
         {
             if (feed == null)
                 throw new ArgumentNullException("feed", "No feed provided");
-
-            if (feed.Root == null)
-                throw new InvalidFeedFormatException("No root element found");
-
-            var channel = feed.Root.Element("channel");
-            if (channel == null)
-                throw new InvalidFeedFormatException("No channel element found");
-
-            var content = this.Namespaces["content"];
-            var wfw = this.Namespaces["wfw"];
-            var dc = this.Namespaces["dc"];
-            var atom = this.Namespaces["atom"];
-            var sy = this.Namespaces["sy"];
-            var slash = this.Namespaces["slash"];
-
-            var wp = new WordpressRss()
-                     {
-                         Channel = new WordpressChannel()
-                                   {
-                                       Title = channel.Element("title").Value,
-                                       AtomLink = new Link()
-                                                  {
-                                                      Href = channel.Element(atom + "link").Attribute("href").Value,
-                                                      Rel = channel.Element(atom + "link").Attribute("rel").Value,
-                                                      Type = channel.Element(atom + "link").Attribute("type").Value,
-                                                  },
-                                       Link = channel.Element("link").Value,
-                                       Description = channel.Element("description").Value,
-                                       LastBuildDate = Convert.ToDateTime(channel.Element("lastBuildDate").Value),
-                                       Language = channel.Element("language").Value,
-                                       Syndication = new Syndication()
-                                                     {
-                                                         UpdatePeriod = (UpdatePeriod)Enum.Parse(typeof(UpdatePeriod), channel.Element(sy + "updatePeriod").Value, true),
-                                                         UpdateFrequency = Convert.ToInt32(channel.Element(sy + "updateFrequency").Value)
-                                                     },
-                                       Generator = channel.Element("generator").Value,
-                                       Items = channel.Elements("item")
-                                                      .Select(p => new WordpressItem()
-                                                                   {
-                                                                       Title = p.Element("title").Value,
-                                                                       Link = p.Element("link").Value,
-                                                                       Comments = p.Element("comments").Value,
-                                                                       PubDate = Convert.ToDateTime(p.Element("pubDate").Value),
-                                                                       DublinCore = new DublinCore() { Creator = p.Element(dc + "creator").Value },
-                                                                       Categories = p.Elements("category")
-                                                                                     .Select(q => new Category()
-                                                                                                  {
-                                                                                                      Domain = q.Attribute("domain") != null ? q.Attribute("domain").Value : null,
-                                                                                                      Value = q.Value
-                                                                                                  })
-                                                                                     .ToList(),
-                                                                       Guid = new Guid()
-                                                                              {
-                                                                                  IsPermaLink = Convert.ToBoolean(p.Element("guid")
-                                                                                                                   .Attribute("isPermaLink")
-                                                                                                                   .Value),
-                                                                                  Value = p.Element("guid").Value
-                                                                              },
-                                                                       Description = p.Element("description").Value,
-                                                                       Content = new ViewModels.Feeds.Extensions.Content() { Encoded = p.Element(content + "encoded").Value },
-                                                                       WellFormedWeb = new WellFormedWeb() { CommentRss = p.Element(wfw + "commentRss").Value },
-                                                                       Slash = new Slash() { Comments = Convert.ToInt32(p.Element(slash + "comments").Value)}
-                                                                   })
-                                                      .ToList()
-                                   }
-                     };
+            
+            var wp = this.GetWordpressRss(feed);
 
             throw new NotImplementedException();
         }

@@ -48,6 +48,8 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Exceptions\InvalidFeedFormatException.cs" />
+    <Compile Include="Exceptions\RequiredFeedAttributeException.cs" />
+    <Compile Include="Exceptions\RequiredFeedElementException.cs" />
     <Compile Include="Interfaces\IFeedServiceBase.cs" />
     <Compile Include="Interfaces\IRssFeedService.cs" />
     <Compile Include="Interfaces\IWordpressRssService.cs" />
