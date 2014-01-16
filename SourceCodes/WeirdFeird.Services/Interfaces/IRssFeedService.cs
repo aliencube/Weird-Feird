@@ -1,4 +1,6 @@
-﻿using System.Xml.Linq;
+﻿using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
+using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace Aliencube.WeirdFeird.Services.Interfaces
 {
@@ -36,6 +38,13 @@ namespace Aliencube.WeirdFeird.Services.Interfaces
         /// <param name="channel">XElement channel instance.</param>
         /// <returns>Returns the XElement generator instance.</returns>
         XElement GetGenerator(XElement channel);
+
+        /// <summary>
+        /// Gets the list of category instances from the list of category elements.
+        /// </summary>
+        /// <param name="elements">List of category elements.</param>
+        /// <returns>Returns the list of category instances.</returns>
+        IList<Category> GetCategories(IList<XElement> elements);
 
         #endregion Methods
     }

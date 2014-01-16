@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
-using Category = Aliencube.WeirdFeird.ViewModels.Feeds.Rss.Category;
 using Content = Aliencube.WeirdFeird.ViewModels.Feeds.Extensions.Content;
 using Guid = Aliencube.WeirdFeird.ViewModels.Feeds.Rss.Guid;
 
@@ -205,18 +204,7 @@ namespace Aliencube.WeirdFeird.Services
                                                    {
                                                        Creator = p.Element(dc + "creator").GetString(false)
                                                    },
-                                      // TODO: Implementation for GetCategories() method.
-                                      Categories = p.Elements("category")
-                                                    .Select(q =>
-                                                            new Category()
-                                                            {
-                                                                Domain =
-                                                                    q.Attribute("domain") != null
-                                                                        ? q.Attribute("domain").Value
-                                                                        : null,
-                                                                Value = q.Value
-                                                            })
-                                                    .ToList(),
+                                      Categories = this.GetCategories(p.Elements("category").ToList()),
                                       Guid = new Guid()
                                              {
                                                  IsPermaLink = p.Element("guid").GetAttribute("isPermaLink").GetBoolean(false),

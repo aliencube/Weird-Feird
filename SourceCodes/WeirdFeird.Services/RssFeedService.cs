@@ -1,7 +1,11 @@
 ﻿using Aliencube.WeirdFeird.Configurations.Interfaces;
 using Aliencube.WeirdFeird.Exceptions;
+using Aliencube.WeirdFeird.Extensions;
 using Aliencube.WeirdFeird.Services.Interfaces;
+using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace Aliencube.WeirdFeird.Services
@@ -74,6 +78,25 @@ namespace Aliencube.WeirdFeird.Services
                 throw new ArgumentNullException("channel", "No channel provided");
 
             return channel.Element("generator");
+        }
+
+        /// <summary>
+        /// Gets the list of category instances from the list of category elements.
+        /// </summary>
+        /// <param name="elements">List of category elements.</param>
+        /// <returns>Returns the list of category instances.</returns>
+        public IList<Category> GetCategories(IList<XElement> elements)
+        {
+            if (elements == null || !elements.Any())
+                throw new ArgumentNullException("elements", "No elements provided");
+
+            var categories = elements.Select(q => new Category()
+                                                  {
+                                                      Domain = q.GetAttribute("domain").GetString(false),
+                                                      Value = q.GetString(false)
+                                                  })
+                                     .ToList();
+            return categories;
         }
 
         #endregion Methods
