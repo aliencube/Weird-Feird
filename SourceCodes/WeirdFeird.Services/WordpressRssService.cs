@@ -137,25 +137,25 @@ namespace Aliencube.WeirdFeird.Services
             var sy = this.Namespaces["sy"];
             var wp = new WordpressChannel()
                      {
-                         Title = channel.Element("title").ToString(true),
+                         Title = channel.Element("title").GetString(true),
                          AtomLink = new Link()
                                     {
-                                        Href = channel.Element(atom + "link").GetAttribute("href").ToString(true),
+                                        Href = channel.Element(atom + "link").GetAttribute("href").GetString(true),
 
-                                        Rel = channel.Element(atom + "link").GetAttribute("rel").ToString(false),
-                                        Type = channel.Element(atom + "link").GetAttribute("type").ToString(false),
+                                        Rel = channel.Element(atom + "link").GetAttribute("rel").GetString(false),
+                                        Type = channel.Element(atom + "link").GetAttribute("type").GetString(false),
                                     },
-                         Link = channel.Element("link").ToString(true),
-                         Description = channel.Element("description").ToString(true),
+                         Link = channel.Element("link").GetString(true),
+                         Description = channel.Element("description").GetString(true),
 
-                         LastBuildDate = Convert.ToDateTime(this.GetElementValue(channel.Element("lastBuildDate"))),
-                         Language = channel.Element("language").ToString(false),
+                         LastBuildDate = channel.Element("lastBuildDate").GetDateTime(false),
+                         Language = channel.Element("language").GetString(false),
                          Syndication = new Syndication()
                                        {
-                                           UpdatePeriod = channel.Element(sy + "updatePeriod").ToUpdaetPeriod(),
-                                           UpdateFrequency = channel.Element(sy + "updateFrequency").ToInt32(1)
+                                           UpdatePeriod = channel.Element(sy + "updatePeriod").GetUpdaetPeriod(),
+                                           UpdateFrequency = channel.Element(sy + "updateFrequency").GetInt32(1)
                                        },
-                         Generator = channel.Element("generator").ToString(false),
+                         Generator = channel.Element("generator").GetString(false),
                          Items = this.GetWordpressItems(channel.Elements("item").ToList()),
                      };
             return wp;
