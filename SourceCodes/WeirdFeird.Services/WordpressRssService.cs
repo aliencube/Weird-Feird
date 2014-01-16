@@ -195,16 +195,15 @@ namespace Aliencube.WeirdFeird.Services
             var wp = items.Select(p =>
                                   new WordpressItem()
                                   {
-                                      Title = this.GetElementValue(p.Element("title"), true),
-                                      Link = this.GetElementValue(p.Element("link"), true),
-                                      Description = this.GetElementValue(p.Element("description"), true),
+                                      Title = p.Element("title").GetString(true),
+                                      Link = p.Element("link").GetString(true),
+                                      Description = p.Element("description").GetString(true),
 
-                                      Comments = this.GetElementValue(p.Element("comments")),
-                                      // TODO: Extension methods for conversion with default value.
-                                      PubDate = Convert.ToDateTime(this.GetElementValue(p.Element("pubDate"))),
+                                      Comments = p.Element("comments").GetString(false),
+                                      PubDate = p.Element("pubDate").GetDateTime(false),
                                       DublinCore = new DublinCore()
                                                    {
-                                                       Creator = this.GetElementValue(p.Element(dc + "creator"))
+                                                       Creator = p.Element(dc + "creator").GetString(false)
                                                    },
                                       // TODO: Implementation for GetCategories() method.
                                       Categories = p.Elements("category")
@@ -220,25 +219,20 @@ namespace Aliencube.WeirdFeird.Services
                                                     .ToList(),
                                       Guid = new Guid()
                                              {
-                                                 IsPermaLink =
-                                                     Convert.ToBoolean(this.GetAttributeValue("isPermaLink",
-                                                                                              p.Element("guid"))),
-                                                 Value = this.GetElementValue(p.Element("guid"))
+                                                 IsPermaLink = p.Element("guid").GetAttribute("isPermaLink").GetBoolean(false),
+                                                 Value = p.Element("guid").GetString(false)
                                              },
                                       Content = new Content()
                                                 {
-                                                    Encoded = this.GetElementValue(p.Element(content + "encoded"))
+                                                    Encoded = p.Element(content + "encoded").GetString(false)
                                                 },
                                       WellFormedWeb = new WellFormedWeb()
                                                       {
-                                                          CommentRss =
-                                                              this.GetElementValue(p.Element(wfw + "commentRss"))
+                                                          CommentRss = p.Element(wfw + "commentRss").GetString(false)
                                                       },
                                       Slash = new Slash()
                                               {
-                                                  // TODO: Extension methods for conversion with default value.
-                                                  Comments =
-                                                      Convert.ToInt32(this.GetElementValue(p.Element(slash + "comments")))
+                                                  Comments = p.Element(slash + "comments").GetInt32(false)
                                               }
                                   })
                           .ToList();

@@ -114,6 +114,36 @@ namespace Aliencube.WeirdFeird.Extensions
         }
 
         /// <summary>
+        /// Converts the element value to <c>Boolean</c> value.
+        /// </summary>
+        /// <param name="element">XElement instance.</param>
+        /// <param name="required">Value that specifies whether this is required or not. Default value is <c>False</c>.</param>
+        /// <param name="defaultValue">Default value to return.</param>
+        /// <returns>Returns the converted <c>DateTime</c> value.</returns>
+        /// <exception cref="ArgumentNullException">Throws when element is NULL.</exception>
+        /// <exception cref="RequiredFeedElementException">Throws when no element value is set.</exception>
+        public static bool GetBoolean(this XElement element, bool required = false, bool defaultValue = false)
+        {
+            if (element == null)
+            {
+                if (required)
+                    throw new ArgumentNullException("element", "No element found");
+                return defaultValue;
+            }
+
+            var value = element.Value;
+            if (String.IsNullOrWhiteSpace(value))
+            {
+                if (required)
+                    throw new RequiredFeedElementException("Value must be set");
+                return defaultValue;
+            }
+
+            bool result;
+            return Boolean.TryParse(value, out result) ? result : defaultValue;
+        }
+
+        /// <summary>
         /// Converts the element value to <c>DateTime</c> value in UTC.
         /// </summary>
         /// <param name="element">XElement instance.</param>
