@@ -1,27 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Xml.Linq;
-using System.Xml.Schema;
 using Aliencube.WeirdFeird.Configurations;
 using Aliencube.WeirdFeird.Configurations.Interfaces;
 using Aliencube.WeirdFeird.Services.Interfaces;
-using Aliencube.WeirdFeird.ViewModels.Enums;
-using Aliencube.WeirdFeird.ViewModels.Feeds.Atom;
-using Aliencube.WeirdFeird.ViewModels.Feeds.Extensions;
-using Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Wordpress;
 using NUnit.Framework;
 using NSubstitute;
-using Category = Aliencube.WeirdFeird.ViewModels.Feeds.Rss.Category;
-using Content = Aliencube.WeirdFeird.ViewModels.Feeds.Extensions.Content;
-using Guid = Aliencube.WeirdFeird.ViewModels.Feeds.Rss.Guid;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace Aliencube.WeirdFeird.Services.Tests
 {
@@ -50,7 +35,7 @@ namespace Aliencube.WeirdFeird.Services.Tests
             this._settings.Dispose();
         }
 
-        #endregion
+        #endregion SetUp / TearDown
 
         #region Tests
 
@@ -111,70 +96,12 @@ namespace Aliencube.WeirdFeird.Services.Tests
         [TestCase("http://blog.aliencube.org/tag/weird-meetup/feed")]
         public async void GetWordpressRss_GivenFeedUrl_WordpressRssReturned(string feedUrl)
         {
-            var content = this._wordpress.Namespaces["content"];
-            var wfw = this._wordpress.Namespaces["wfw"];
-            var dc = this._wordpress.Namespaces["dc"];
-            var atom = this._wordpress.Namespaces["atom"];
-            var sy = this._wordpress.Namespaces["sy"];
-            var slash = this._wordpress.Namespaces["slash"];
-
             var feed = await this._wordpress.GetFeedXmlAsync(feedUrl);
-            var channel = feed.Root.Element("channel");
-            var wp = new WordpressRss()
-                     {
-                         Channel = new WordpressChannel()
-                                   {
-                                       Title = channel.Element("title").Value,
-                                       AtomLink = new Link()
-                                                  {
-                                                      Href = channel.Element(atom + "link").Attribute("href").Value,
-                                                      Rel = channel.Element(atom + "link").Attribute("rel").Value,
-                                                      Type = channel.Element(atom + "link").Attribute("type").Value,
-                                                  },
-                                       Link = channel.Element("link").Value,
-                                       Description = channel.Element("description").Value,
-                                       LastBuildDate = Convert.ToDateTime(channel.Element("lastBuildDate").Value),
-                                       Language = channel.Element("language").Value,
-                                       Syndication = new Syndication()
-                                                     {
-                                                         UpdatePeriod = (UpdatePeriod)Enum.Parse(typeof(UpdatePeriod), channel.Element(sy + "updatePeriod").Value, true),
-                                                         UpdateFrequency = Convert.ToInt32(channel.Element(sy + "updateFrequency").Value)
-                                                     },
-                                       Generator = channel.Element("generator").Value,
-                                       Items = channel.Elements("item")
-                                                      .Select(p => new WordpressItem()
-                                                                   {
-                                                                       Title = p.Element("title").Value,
-                                                                       Link = p.Element("link").Value,
-                                                                       Comments = p.Element("comments").Value,
-                                                                       PubDate = Convert.ToDateTime(p.Element("pubDate").Value),
-                                                                       DublinCore = new DublinCore() { Creator = p.Element(dc + "creator").Value },
-                                                                       Categories = p.Elements("category")
-                                                                                     .Select(q => new Category()
-                                                                                                  {
-                                                                                                      Domain = q.Attribute("domain") != null ? q.Attribute("domain").Value : null,
-                                                                                                      Value = q.Value
-                                                                                                  })
-                                                                                     .ToList(),
-                                                                       Guid = new Guid()
-                                                                              {
-                                                                                  IsPermaLink = Convert.ToBoolean(p.Element("guid")
-                                                                                                                   .Attribute("isPermaLink")
-                                                                                                                   .Value),
-                                                                                  Value = p.Element("guid").Value
-                                                                              },
-                                                                       Description = p.Element("description").Value,
-                                                                       Content = new Content() { Encoded = p.Element(content + "encoded").Value },
-                                                                       WellFormedWeb = new WellFormedWeb() { CommentRss = p.Element(wfw + "commentRss").Value },
-                                                                       Slash = new Slash() { Comments = Convert.ToInt32(p.Element(slash + "comments").Value)}
-                                                                   })
-                                                      .ToList()
-                                   }
-                     };
+            var wp = this._wordpress.GetWordpressRss(feed);
 
             Assert.IsTrue(wp.Channel.Items.Any());
         }
 
-        #endregion
+        #endregion Tests
     }
 }
