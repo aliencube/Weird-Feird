@@ -54,7 +54,7 @@ namespace Aliencube.WeirdFeird.Extensions
         /// <returns>Returns the converted <c>String</c> value.</returns>
         /// <exception cref="ArgumentNullException">Throws when element is NULL.</exception>
         /// <exception cref="RequiredFeedElementException">Throws when no element value is set.</exception>
-        public static string GetString(this XElement element, bool required = false, string defaultValue = null)
+        public static string GetString(this XElement element, bool required = false, string defaultValue = "")
         {
             if (element == null)
             {
