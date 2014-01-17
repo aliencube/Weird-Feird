@@ -126,69 +126,6 @@ namespace Aliencube.WeirdFeird.Services
         }
 
         /// <summary>
-        /// Gets the value from the XElement instance.
-        /// </summary>
-        /// <param name="element">XElement instance.</param>
-        /// <param name="required">Value that specifies whether the value is required or not. Default value is <c>False</c>.</param>
-        /// <returns>Returns the element value.</returns>
-        /// <exception cref="ArgumentNullException">Throws when element is NULL.</exception>
-        /// <exception cref="RequiredFeedElementException">Throws when no element value is set.</exception>
-        public string GetElementValue(XElement element, bool required = false)
-        {
-            if (element == null)
-                throw new ArgumentNullException("element", "No element provided");
-
-            var value = element.Value;
-            if (required && String.IsNullOrWhiteSpace(value))
-                throw new RequiredFeedElementException("Value must be set");
-
-            return value;
-        }
-
-        /// <summary>
-        /// Gets the value from the XAttribute instance.
-        /// </summary>
-        /// <param name="attribute">Name of attribute.</param>
-        /// <param name="element">XElement instance.</param>
-        /// <param name="required">Value that specifies whether the value is required or not. Default value is <c>False</c>.</param>
-        /// <returns>Returns the attribute value.</returns>
-        /// <exception cref="ArgumentNullException">Throws when attribute or element is NULL.</exception>
-        /// <exception cref="InvalidFeedFormatException">Throws when no attribute is found.</exception>
-        public string GetAttributeValue(string attribute, XElement element, bool required = false)
-        {
-            if (String.IsNullOrWhiteSpace(attribute))
-                throw new ArgumentNullException("attribute", "No attribute provided");
-            if (element == null)
-                throw new ArgumentNullException("element", "No element provided");
-
-            var attr = element.Attribute(attribute);
-            if (attr == null)
-                throw new InvalidFeedFormatException("No attribute found");
-
-            return this.GetAttributeValue(attr, required);
-        }
-
-        /// <summary>
-        /// Gets the value from the XAttribute instance.
-        /// </summary>
-        /// <param name="attribute">XAttribute instance.</param>
-        /// <param name="required">Value that specifies whether the value is required or not. Default value is <c>False</c>.</param>
-        /// <returns>Returns the attribute value.</returns>
-        /// <exception cref="ArgumentNullException">Throws when attribute is NULL.</exception>
-        /// <exception cref="RequiredFeedAttributeException">Throws when no attribute value is set.</exception>
-        public string GetAttributeValue(XAttribute attribute, bool required = false)
-        {
-            if (attribute == null)
-                throw new ArgumentNullException("attribute", "No attribute provided");
-
-            var value = attribute.Value;
-            if (required && String.IsNullOrWhiteSpace(value))
-                throw new RequiredFeedAttributeException("Value must be set");
-
-            return value;
-        }
-
-        /// <summary>
         /// Gets the standardised feed instance from the feed XML document.
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>

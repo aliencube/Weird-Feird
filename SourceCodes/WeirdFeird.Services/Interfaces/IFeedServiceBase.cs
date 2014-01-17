@@ -57,31 +57,6 @@ namespace Aliencube.WeirdFeird.Services.Interfaces
         XElement GetRoot(XDocument feed);
 
         /// <summary>
-        /// Gets the value from the XElement instance.
-        /// </summary>
-        /// <param name="element">XElement instance.</param>
-        /// <param name="required">Value that specifies whether the value is required or not. Default value is <c>False</c>.</param>
-        /// <returns>Returns the element value.</returns>
-        string GetElementValue(XElement element, bool required = false);
-
-        /// <summary>
-        /// Gets the value from the XAttribute instance.
-        /// </summary>
-        /// <param name="attribute">Name of attribute.</param>
-        /// <param name="element">XElement instance.</param>
-        /// <param name="required">Value that specifies whether the value is required or not. Default value is <c>False</c>.</param>
-        /// <returns>Returns the attribute value.</returns>
-        string GetAttributeValue(string attribute, XElement element, bool required = false);
-
-        /// <summary>
-        /// Gets the value from the XAttribute instance.
-        /// </summary>
-        /// <param name="attribute">XAttribute instance.</param>
-        /// <param name="required">Value that specifies whether the value is required or not. Default value is <c>False</c>.</param>
-        /// <returns>Returns the attribute value.</returns>
-        string GetAttributeValue(XAttribute attribute, bool required = false);
-
-        /// <summary>
         /// Gets the standardised feed instance from the feed XML document.
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
