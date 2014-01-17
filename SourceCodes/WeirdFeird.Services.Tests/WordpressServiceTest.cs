@@ -132,6 +132,36 @@ namespace Aliencube.WeirdFeird.Services.Tests
             Assert.IsTrue(wp.Channel.Items.Any());
         }
 
+        /// <summary>
+        /// Tests to create a list of Wordpress feed entry adapter instances derived from Wordpress RSS feed.
+        /// </summary>
+        /// <param name="feedUrl">Feed URL.</param>
+        [Test]
+        [TestCase("http://blog.aliencube.org/tag/weird-meetup/feed")]
+        public async void GetWordpressFeedEntryAdapters_GivenFeedUrl_WordpressFeedEntryAdaptersReturned(string feedUrl)
+        {
+            var feed = await this._wordpress.GetFeedXmlAsync(feedUrl);
+            var wp = this._wordpress.GetWordpressRss(feed);
+            var adapters = this._wordpress.GetFeedEntryAdapters(wp.Channel.Items);
+
+            Assert.IsTrue(adapters.Any());
+        }
+
+        /// <summary>
+        /// Tests to create a Wordpress feed adapter instance derived from Wordpress RSS feed.
+        /// </summary>
+        /// <param name="feedUrl">Feed URL.</param>
+        [Test]
+        [TestCase("http://blog.aliencube.org/tag/weird-meetup/feed")]
+        public async void GetWordpressFeedAdapter_GivenFeedUrl_WordpressFeedAdapterReturned(string feedUrl)
+        {
+            var feed = await this._wordpress.GetFeedXmlAsync(feedUrl);
+            var wp = this._wordpress.GetWordpressRss(feed);
+            var adapter = this._wordpress.GetFeedAdapter(wp);
+
+            Assert.IsTrue(adapter.Entries.Any());
+        }
+
         #endregion Tests
     }
 }
