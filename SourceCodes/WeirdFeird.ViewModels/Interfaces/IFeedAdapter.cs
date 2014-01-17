@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aliencube.WeirdFeird.ViewModels.Feeds;
+using System;
 using System.Collections.Generic;
 
 namespace Aliencube.WeirdFeird.ViewModels.Interfaces
@@ -48,7 +49,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Interfaces
         /// <summary>
         /// Gets or sets the list of standard feed item instances.
         /// </summary>
-        IList<IFeedEntry> Entries { get; set; }
+        IList<FeedEntryAdapter> Entries { get; set; }
 
         #endregion Properties
     }

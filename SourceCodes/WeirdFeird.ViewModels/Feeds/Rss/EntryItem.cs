@@ -62,7 +62,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
         public Guid Guid { get; set; }
 
         /// <summary>
-        /// Gets or sets the date when the item was published. [More](http://www.rssboard.org/rss-specification#ltpubdategtSubelementOfLtitemgt).
+        /// Gets or sets the date when the item was published. This is UTC value. [More](http://www.rssboard.org/rss-specification#ltpubdategtSubelementOfLtitemgt).
         /// </summary>
         public DateTime? PubDate { get; set; }
 

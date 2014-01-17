@@ -6,7 +6,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Interfaces
     /// <summary>
     /// This provides interfaces to the FeedEntry class.
     /// </summary>
-    public interface IFeedEntry
+    public interface IFeedEntryAdapter
     {
         #region Properties
 
@@ -58,7 +58,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Interfaces
         /// <summary>
         /// Gets or sets the list of categories for the feed entry.
         /// </summary>
-        IList<Dictionary<string, string>> Categories { get; set; }
+        IDictionary<string, string> Categories { get; set; }
 
         #endregion Properties
     }

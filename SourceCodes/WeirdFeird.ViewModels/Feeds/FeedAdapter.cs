@@ -49,7 +49,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds
         /// <summary>
         /// Gets or sets the list of standard feed item instances.
         /// </summary>
-        public IList<IFeedEntry> Entries { get; set; }
+        public IList<FeedEntryAdapter> Entries { get; set; }
 
         #endregion Properties
     }

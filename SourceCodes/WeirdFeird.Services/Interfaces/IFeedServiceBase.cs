@@ -57,6 +57,22 @@ namespace Aliencube.WeirdFeird.Services.Interfaces
         XElement GetRoot(XDocument feed);
 
         /// <summary>
+        /// Gets the standard FeedAdapter instance from the feed instance.
+        /// </summary>
+        /// <typeparam name="T">Feed type.</typeparam>
+        /// <param name="feed">Feed instance.</param>
+        /// <returns>Returns the standard FeedAdapter instance.</returns>
+        FeedAdapter GetFeedAdapter<T>(T feed);
+
+        /// <summary>
+        /// Gets the list of standard Feed Entry instances from the list of the feed entry instances.
+        /// </summary>
+        /// <typeparam name="T">Feed item type.</typeparam>
+        /// <param name="entries">List of feed item instances.</param>
+        /// <returns>Returns the list of standard Feed Entry instances.</returns>
+        IList<FeedEntryAdapter> GetFeedEntryAdapters<T>(IList<T> entries);
+
+        /// <summary>
         /// Gets the standardised feed instance from the feed XML document.
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>

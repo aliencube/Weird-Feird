@@ -65,7 +65,7 @@
     <Compile Include="Feeds\Extensions\Slash.cs" />
     <Compile Include="Feeds\Extensions\Syndication.cs" />
     <Compile Include="Feeds\FeedAdapter.cs" />
-    <Compile Include="Feeds\FeedEntry.cs" />
+    <Compile Include="Feeds\FeedEntryAdapter.cs" />
     <Compile Include="Feeds\Rss\Channel.cs" />
     <Compile Include="Feeds\Wordpress\WordpressChannel.cs" />
     <Compile Include="Feeds\Wordpress\WordpressItem.cs" />
@@ -88,7 +88,7 @@
     <Compile Include="Interfaces\Extensions\ISyndication.cs" />
     <Compile Include="Interfaces\Extensions\ICommentApi.cs" />
     <Compile Include="Interfaces\IFeedAdapter.cs" />
-    <Compile Include="Interfaces\IFeedEntry.cs" />
+    <Compile Include="Interfaces\IFeedEntryAdapter.cs" />
     <Compile Include="Interfaces\Rss\ICategory.cs" />
     <Compile Include="Interfaces\Rss\IChannel.cs" />
     <Compile Include="Interfaces\Rss\ICloud.cs" />

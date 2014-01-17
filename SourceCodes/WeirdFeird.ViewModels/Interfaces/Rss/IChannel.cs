@@ -52,12 +52,12 @@ namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Rss
         string WebMaster { get; set; }
 
         /// <summary>
-        /// Gets or sets the publication date for the content in the channel. All date-times in RSS conform to the Date and Time Specification of [RFC 822](http://asg.web.cmu.edu/rfc/rfc822.html), with the exception that the year may be expressed with two characters or four characters (four preferred).
+        /// Gets or sets the publication date for the content in the channel. This is UTC value. All date-times in RSS conform to the Date and Time Specification of [RFC 822](http://asg.web.cmu.edu/rfc/rfc822.html), with the exception that the year may be expressed with two characters or four characters (four preferred).
         /// </summary>
         DateTime? PubDate { get; set; }
 
         /// <summary>
-        /// Gets or sets the last time the content of the channel changed.
+        /// Gets or sets the last time the content of the channel changed. This is UTC value.
         /// </summary>
         DateTime? LastBuildDate { get; set; }
 

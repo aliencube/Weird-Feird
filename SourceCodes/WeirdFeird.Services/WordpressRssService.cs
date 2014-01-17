@@ -1,4 +1,5 @@
 ﻿using Aliencube.WeirdFeird.Configurations.Interfaces;
+using Aliencube.WeirdFeird.Exceptions;
 using Aliencube.WeirdFeird.Extensions;
 using Aliencube.WeirdFeird.Services.Interfaces;
 using Aliencube.WeirdFeird.ViewModels.Feeds;
@@ -111,7 +112,7 @@ namespace Aliencube.WeirdFeird.Services
         /// </summary>
         /// <param name="element">XElement channel instance.</param>
         /// <returns>Returns the Wordpress RSS instance.</returns>
-        /// <exception cref="ArgumentNullException">Throws when channel is NULL.</exception>
+        /// <exception cref="ArgumentNullException">Throws when element is NULL.</exception>
         public WordpressRss GetWordpressRss(XElement element)
         {
             if (element == null)
@@ -126,7 +127,7 @@ namespace Aliencube.WeirdFeird.Services
         /// </summary>
         /// <param name="element">XElement channel instance.</param>
         /// <returns>Returns the Wordpress Channel instance.</returns>
-        /// <exception cref="ArgumentNullException">Throws when channel is NULL.</exception>
+        /// <exception cref="ArgumentNullException">Throws when element is NULL.</exception>
         public WordpressChannel GetWordpressChannel(XElement element)
         {
             if (element == null)
@@ -165,7 +166,7 @@ namespace Aliencube.WeirdFeird.Services
         /// </summary>
         /// <param name="element">XElement channel instance.</param>
         /// <returns>Returns the list of Wordpress Item instances.</returns>
-        /// <exception cref="ArgumentNullException">Throws when channel is NULL.</exception>
+        /// <exception cref="ArgumentNullException">Throws when element is NULL.</exception>
         public IList<WordpressItem> GetWordpressItems(XElement element)
         {
             if (element == null)
@@ -180,7 +181,7 @@ namespace Aliencube.WeirdFeird.Services
         /// </summary>
         /// <param name="elements">List of XElement item instances.</param>
         /// <returns>Returns the list of Wordpress Item instances.</returns>
-        /// <exception cref="ArgumentNullException">Throws when items is NULL or does not contain any item.</exception>
+        /// <exception cref="ArgumentNullException">Throws when elements is NULL or does not contain any item.</exception>
         public IList<WordpressItem> GetWordpressItems(IList<XElement> elements)
         {
             if (elements == null || !elements.Any())
@@ -228,6 +229,71 @@ namespace Aliencube.WeirdFeird.Services
         }
 
         /// <summary>
+        /// Gets the standard FeedAdapter instance from the feed instance.
+        /// </summary>
+        /// <typeparam name="T">Feed type.</typeparam>
+        /// <param name="feed">Feed instance.</param>
+        /// <returns>Returns the standard FeedAdapter instance.</returns>
+        /// <exception cref="ArgumentNullException">Throws when feed is NULL.</exception>
+        /// <exception cref="InvalidFeedFormatException">Throws when feed format is not Wordpress RSS.</exception>
+        public override FeedAdapter GetFeedAdapter<T>(T feed)
+        {
+            if (feed == null)
+                throw new ArgumentNullException("feed", "No feed found");
+
+            var instance = feed as WordpressRss;
+            if (instance == null)
+                throw new InvalidFeedFormatException("Not a valid Wordpress feed");
+
+            var adapter = new FeedAdapter()
+                          {
+                              Title = instance.Channel.Title,
+                              Description = instance.Channel.Description,
+                              Link = instance.Channel.Link,
+                              FeedLink = instance.Channel.AtomLink.Href,
+                              Generator = instance.Channel.Generator,
+                              DateLastUpdated = instance.Channel.LastBuildDate,
+                              Editors = new List<string>(){ instance.Channel.ManagingEditor},
+                              Entries = this.GetFeedEntryAdapters(instance.Channel.Items),
+                          };
+            return adapter;
+        }
+
+        /// <summary>
+        /// Gets the list of standard Feed Entry instances from the list of the feed entry instances.
+        /// </summary>
+        /// <typeparam name="T">Feed item type.</typeparam>
+        /// <param name="entries">List of feed item instances.</param>
+        /// <returns>Returns the list of standard Feed Entry instances.</returns>
+        /// <exception cref="ArgumentNullException">Throws when entries is NULL or does not contain any item.</exception>
+        /// <exception cref="InvalidFeedFormatException">Throws when feed format is not Wordpress RSS.</exception>
+        public override IList<FeedEntryAdapter> GetFeedEntryAdapters<T>(IList<T> entries)
+        {
+            if (entries == null || !entries.Any())
+                throw new ArgumentNullException("entries", "No entries provided");
+
+            var items = entries as List<WordpressItem>;
+            if (items == null)
+                throw new InvalidFeedFormatException("Not a valid Wordpress feed");
+
+            var adapters = items.Select(p => new FeedEntryAdapter()
+                                             {
+                                                 Title = p.Title,
+                                                 Link = p.Link,
+                                                 Permalink = p.Guid.Value,
+                                                 CommentLink = p.Comments,
+                                                 Description = p.Description,
+                                                 Content = p.Content.Encoded,
+                                                 //Thumbnail = p.Thumbnail,
+                                                 DatePublished = p.PubDate,
+                                                 Authors = new List<string>() { p.Author },
+                                                 Categories = p.Categories.ToDictionary(q => q.Value, r => r.Domain),
+                                             })
+                                .ToList();
+            return adapters;
+        }
+
+        /// <summary>
         /// Gets the standardised feed instance from the feed XML document.
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
@@ -239,8 +305,9 @@ namespace Aliencube.WeirdFeird.Services
                 throw new ArgumentNullException("feed", "No feed provided");
 
             var wp = this.GetWordpressRss(feed);
+            var adapter = this.GetFeedAdapter(wp);
 
-            throw new NotImplementedException();
+            return adapter;
         }
 
         #endregion Methods

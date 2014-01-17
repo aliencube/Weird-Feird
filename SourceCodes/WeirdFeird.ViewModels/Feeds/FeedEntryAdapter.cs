@@ -7,7 +7,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds
     /// <summary>
     /// this represents the standard feed item entity.
     /// </summary>
-    public partial class FeedEntry : IFeedEntry
+    public partial class FeedEntryAdapter : IFeedEntryAdapter
     {
         #region Properties
 
@@ -59,7 +59,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds
         /// <summary>
         /// Gets or sets the list of categories for the feed entry.
         /// </summary>
-        public IList<Dictionary<string, string>> Categories { get; set; }
+        public IDictionary<string, string> Categories { get; set; }
 
         #endregion Properties
     }
