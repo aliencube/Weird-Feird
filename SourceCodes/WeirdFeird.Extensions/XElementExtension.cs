@@ -15,17 +15,21 @@ namespace Aliencube.WeirdFeird.Extensions
         /// </summary>
         /// <param name="element">XElement instance.</param>
         /// <param name="attributeName">Attribute name.</param>
+        /// <param name="required">Value that specifies whether this is required or not. Default value is <c>False</c>.</param>
         /// <returns>Returns the attribute from the element.</returns>
         /// <exception cref="ArgumentNullException">Throws when element is NULL.</exception>
         /// <exception cref="ArgumentNullException">Throws when attribute is NULL.</exception>
-        public static XAttribute GetAttribute(this XElement element, string attributeName)
+        public static XAttribute GetAttribute(this XElement element, string attributeName, bool required = false)
         {
             if (element == null)
                 throw new ArgumentNullException("element", "No element found");
 
             var attribute = element.Attribute(attributeName);
             if (attribute == null)
-                throw new RequiredFeedAttributeException("No attribute found");
+            {
+                if (required)
+                    throw new RequiredFeedAttributeException("No attribute found");
+            }
 
             return attribute;
         }

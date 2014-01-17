@@ -89,7 +89,37 @@ namespace Aliencube.WeirdFeird.Services.Tests
         }
 
         /// <summary>
-        /// Tests to create a data container instance derived from Wordpress RSS feed.
+        /// Tests to create a Wordpress Items data container instance derived from Wordpress RSS feed.
+        /// </summary>
+        /// <param name="feedUrl">Feed URL.</param>
+        [Test]
+        [TestCase("http://blog.aliencube.org/tag/weird-meetup/feed")]
+        public async void GetWordpressItems_GivenFeedUrl_WordpressItemsReturned(string feedUrl)
+        {
+            var feed = await this._wordpress.GetFeedXmlAsync(feedUrl);
+            var elements = feed.Descendants("item").ToList();
+            var items = this._wordpress.GetWordpressItems(elements);
+
+            Assert.IsTrue(items.Any());
+        }
+
+        /// <summary>
+        /// Tests to create a Wordpress Channel data container instance derived from Wordpress RSS feed.
+        /// </summary>
+        /// <param name="feedUrl">Feed URL.</param>
+        [Test]
+        [TestCase("http://blog.aliencube.org/tag/weird-meetup/feed")]
+        public async void GetWordpressChannel_GivenFeedUrl_WordpressChannelReturned(string feedUrl)
+        {
+            var feed = await this._wordpress.GetFeedXmlAsync(feedUrl);
+            var element = feed.Descendants("channel").SingleOrDefault();
+            var channel = this._wordpress.GetWordpressChannel(element);
+
+            Assert.IsTrue(channel != null);
+        }
+
+        /// <summary>
+        /// Tests to create a Wordpress RSS data container instance derived from Wordpress RSS feed.
         /// </summary>
         /// <param name="feedUrl">Feed URL.</param>
         [Test]

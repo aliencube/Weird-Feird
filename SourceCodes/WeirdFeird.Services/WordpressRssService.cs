@@ -139,7 +139,7 @@ namespace Aliencube.WeirdFeird.Services
                          Title = channel.Element("title").GetString(true),
                          AtomLink = new Link()
                                     {
-                                        Href = channel.Element(atom + "link").GetAttribute("href").GetString(true),
+                                        Href = channel.Element(atom + "link").GetAttribute("href", true).GetString(true),
 
                                         Rel = channel.Element(atom + "link").GetAttribute("rel").GetString(false),
                                         Type = channel.Element(atom + "link").GetAttribute("type").GetString(false),
@@ -207,7 +207,7 @@ namespace Aliencube.WeirdFeird.Services
                                       Categories = this.GetCategories(p.Elements("category").ToList()),
                                       Guid = new Guid()
                                              {
-                                                 IsPermaLink = p.Element("guid").GetAttribute("isPermaLink").GetBoolean(false),
+                                                 IsPermaLink = p.Element("guid").GetAttribute("isPermaLink").GetBoolean(false, true),
                                                  Value = p.Element("guid").GetString(false)
                                              },
                                       Content = new Content()
