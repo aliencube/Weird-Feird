@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aliencube.WeirdFeird.ViewModels.Interfaces
 {
@@ -13,17 +10,46 @@ namespace Aliencube.WeirdFeird.ViewModels.Interfaces
     {
         #region Properties
 
+        /// <summary>
+        /// Gets or sets the title of the feed.
+        /// </summary>
+        string Title { get; set; }
+
+        /// <summary>
+        /// Gets or sets the brief discription of the feed.
+        /// </summary>
+        string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the link of the website providing the feed.
+        /// </summary>
+        string Link { get; set; }
+
+        /// <summary>
+        /// Gets or sets the link of the feed.
+        /// </summary>
+        string FeedLink { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tools that generates the feed.
+        /// </summary>
+        string Generator { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date/time in UTC, which lastly updated the feed.
+        /// </summary>
+        DateTime? DateLastUpdated { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of authors managing the feed.
+        /// </summary>
+        IList<string> Editors { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of standard feed item instances.
+        /// </summary>
         IList<IFeedEntry> Entries { get; set; }
 
-        #endregion
-    }
-
-    /// <summary>
-    /// This provides interfaces to the FeedEntry class.
-    /// </summary>
-    public interface IFeedEntry
-    {
-        #region Properties
-        #endregion
+        #endregion Properties
     }
 }
