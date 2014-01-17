@@ -73,7 +73,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
         /// <summary>
         /// Gets or sets one or more categories that the channel belongs to. Follows the same rules as the item-level [category](http://www.rssboard.org/rss-specification#ltcategorygtSubelementOfLtitemgt) element. More [info](http://www.rssboard.org/rss-specification#syndic8).
         /// </summary>
-        public IList<ICategory> Categories { get; set; }
+        public IList<Category> Categories { get; set; }
 
         /// <summary>
         /// Gets or sets the string indicating the program used to generate the channel.
@@ -89,7 +89,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
         /// <summary>
         /// Gets or sets a process to register with a cloud to be notified of updates to the channel, implementing a lightweight publish-subscribe protocol for RSS feeds. More info [here](http://www.rssboard.org/rss-specification#ltcloudgtSubelementOfLtchannelgt).
         /// </summary>
-        public ICloud Cloud { get; set; }
+        public Cloud Cloud { get; set; }
 
         /// <summary>
         /// Gets or sets the TTL value which is a number of minutes that indicates how long a channel can be cached before refreshing from the source. More info [here](http://www.rssboard.org/rss-specification#ltttlgtSubelementOfLtchannelgt).
@@ -99,7 +99,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
         /// <summary>
         /// Gets or sets the GIF, JPEG or PNG image that can be displayed with the channel. More info [here](http://www.rssboard.org/rss-specification#ltimagegtSubelementOfLtchannelgt).
         /// </summary>
-        public IImage Image { get; set; }
+        public Image Image { get; set; }
 
         /// <summary>
         /// Gets or sets the the [PICS](http://www.w3.org/PICS/) rating for the channel.
@@ -109,7 +109,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
         /// <summary>
         /// Gets or sets the text input box that can be displayed with the channel. More info [here](http://www.rssboard.org/rss-specification#lttextinputgtSubelementOfLtchannelgt).
         /// </summary>
-        public ITextInput TextInput { get; set; }
+        public TextInput TextInput { get; set; }
 
         /// <summary>
         /// Gets or sets the hint for aggregators telling them which hours they can skip. This element contains up to 24 hours sub-elements whose value is a number between 0 and 23, representing a time in GMT, when aggregators, if they support the feature, may not read the channel on hours listed in the <c>SkipHours</c> instance. The hour beginning at midnight is hour zero.
@@ -124,7 +124,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
         /// <summary>
         /// Gets or sets the number of items. An item may represent a "story" -- much like a story in a newspaper or magazine; if so its description is a synopsis of the story, and the link points to the full story. An item may also be complete in itself, if so, the description contains the text (entity-encoded HTML is allowed; see [examples](http://www.rssboard.org/rss-encoding-examples)), and the link and title may be omitted. All elements of an item are optional, however at least one of title or description must be present.
         /// </summary>
-        public IList<IItem> Items { get; set; }
+        public IList<EntryItem> Items { get; set; }
 
         #endregion Properties - Optional
     }

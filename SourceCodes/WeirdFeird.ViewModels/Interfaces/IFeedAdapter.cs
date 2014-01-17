@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Aliencube.WeirdFeird.ViewModels.Interfaces
 {
+    /// <summary>
+    /// This provides interfaces to the FeedAdapter class.
+    /// </summary>
     public interface IFeedAdapter
     {
         #region Properties
@@ -15,6 +18,9 @@ namespace Aliencube.WeirdFeird.ViewModels.Interfaces
         #endregion
     }
 
+    /// <summary>
+    /// This provides interfaces to the FeedEntry class.
+    /// </summary>
     public interface IFeedEntry
     {
         #region Properties

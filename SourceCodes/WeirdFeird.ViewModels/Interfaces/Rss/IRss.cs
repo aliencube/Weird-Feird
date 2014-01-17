@@ -1,4 +1,6 @@
-﻿namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Rss
+﻿using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
+
+namespace Aliencube.WeirdFeird.ViewModels.Interfaces.Rss
 {
     /// <summary>
     /// This provides interfaces to the Rss class.
@@ -16,7 +18,7 @@
         /// <summary>
         /// Gets or sets the RSS channel instance.
         /// </summary>
-        IChannel Channel { get; set; }
+        Channel Channel { get; set; }
 
         #endregion Properties - Required
     }

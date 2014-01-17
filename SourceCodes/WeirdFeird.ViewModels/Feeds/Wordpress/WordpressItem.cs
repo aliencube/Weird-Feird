@@ -1,5 +1,5 @@
-﻿using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Extensions;
+﻿using Aliencube.WeirdFeird.ViewModels.Feeds.Extensions;
+using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
 using Aliencube.WeirdFeird.ViewModels.Interfaces.Wordpress;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress
@@ -14,22 +14,22 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress
         /// <summary>
         /// Gets or sets the DublinCore instance.
         /// </summary>
-        public IDublinCore DublinCore { get; set; }
+        public DublinCore DublinCore { get; set; }
 
         /// <summary>
         /// Gets or sets the Content instance.
         /// </summary>
-        public IContent Content { get; set; }
+        public Content Content { get; set; }
 
         /// <summary>
         /// Gets or sets the WellFormedWeb instance.
         /// </summary>
-        public IWellFormedWeb WellFormedWeb { get; set; }
+        public WellFormedWeb WellFormedWeb { get; set; }
 
         /// <summary>
         /// Gets or sets the Slash instance.
         /// </summary>
-        public ISlash Slash { get; set; }
+        public Slash Slash { get; set; }
 
         #endregion Properties - Optional
     }

@@ -54,12 +54,12 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
         /// <summary>
         /// Gets or sets the media object that is attached to the item. [More](http://www.rssboard.org/rss-specification#ltenclosuregtSubelementOfLtitemgt).
         /// </summary>
-        public IEnclosure Enclosure { get; set; }
+        public Enclosure Enclosure { get; set; }
 
         /// <summary>
         /// Gets or sets the guid or permalink URL for this entry. [More](http://www.rssboard.org/rss-specification#ltguidgtSubelementOfLtitemgt).
         /// </summary>
-        public IGuid Guid { get; set; }
+        public Guid Guid { get; set; }
 
         /// <summary>
         /// Gets or sets the date when the item was published. [More](http://www.rssboard.org/rss-specification#ltpubdategtSubelementOfLtitemgt).
@@ -69,7 +69,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
         /// <summary>
         /// Gets or sets the RSS channel that the item came from. [More](http://www.rssboard.org/rss-specification#ltsourcegtSubelementOfLtitemgt).
         /// </summary>
-        public ISource Source { get; set; }
+        public Source Source { get; set; }
 
         #endregion Properties - Optional
     }

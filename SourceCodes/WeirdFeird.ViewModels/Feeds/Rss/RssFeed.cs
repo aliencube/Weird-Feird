@@ -33,7 +33,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
         /// <summary>
         /// Gets or sets the RSS channel instance.
         /// </summary>
-        public IChannel Channel { get; set; }
+        public Channel Channel { get; set; }
 
         #endregion Properties - Required
     }

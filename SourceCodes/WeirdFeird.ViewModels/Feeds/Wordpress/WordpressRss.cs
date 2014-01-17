@@ -13,7 +13,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress
         /// <summary>
         /// Gets or sets the WordpressChannel instance.
         /// </summary>
-        public new IWordpressChannel Channel { get; set; }
+        public new WordpressChannel Channel { get; set; }
 
         #endregion Properties - Required
     }
