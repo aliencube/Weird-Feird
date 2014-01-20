@@ -49,6 +49,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Exceptions", "We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Extensions.Tests", "WeirdFeird.Extensions.Tests\WeirdFeird.Extensions.Tests.csproj", "{F755C2C5-74BA-4DDE-96F8-C2C50F10BF5E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{0F2D2DBB-C1F7-45E0-B031-C4A6E2B8A946}"
+	ProjectSection(SolutionItems) = preProject
+		..\Documents\Scripts\CreateTables.sql = ..\Documents\Scripts\CreateTables.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +99,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BA11F6F9-39E0-4E1E-8232-0314CDFA595B} = {02E77083-95C0-42E0-8E50-225DDA3ACF10}
 		{2468ACA7-4893-4A34-A5F7-BD0C0F261BA3} = {02E77083-95C0-42E0-8E50-225DDA3ACF10}
+		{0F2D2DBB-C1F7-45E0-B031-C4A6E2B8A946} = {02E77083-95C0-42E0-8E50-225DDA3ACF10}
 		{ACF1D24D-18D7-437A-B64A-62029A8B4B9C} = {06E551AF-2FB3-427B-84F3-42C9F220E009}
 	EndGlobalSection
 EndGlobal
