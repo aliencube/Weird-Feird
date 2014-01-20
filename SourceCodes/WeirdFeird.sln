@@ -54,6 +54,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{0F2D
 		..\Documents\Scripts\CreateTables.sql = ..\Documents\Scripts\CreateTables.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Repositories", "WeirdFeird.Repositories\WeirdFeird.Repositories.csproj", "{6502EC32-F065-4637-AAE1-D72013BBB2B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{F755C2C5-74BA-4DDE-96F8-C2C50F10BF5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F755C2C5-74BA-4DDE-96F8-C2C50F10BF5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F755C2C5-74BA-4DDE-96F8-C2C50F10BF5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6502EC32-F065-4637-AAE1-D72013BBB2B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6502EC32-F065-4637-AAE1-D72013BBB2B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6502EC32-F065-4637-AAE1-D72013BBB2B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6502EC32-F065-4637-AAE1-D72013BBB2B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
