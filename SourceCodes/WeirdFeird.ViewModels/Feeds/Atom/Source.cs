@@ -1,5 +1,4 @@
-﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
@@ -10,7 +9,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
     /// <remarks>
     /// If an entry is copied from one feed into another feed, then the source feed's metadata (all child elements of feed other than the entry elements) should be preserved if the source feed contains any of the child elements author, contributor, rights, or category and those child elements are not present in the source entry.
     /// </remarks>
-    public class Source : CommonAttributes, ISource
+    public class Source : CommonAttributes
     {
         #region Properties - Optional
 

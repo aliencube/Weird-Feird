@@ -1,11 +1,9 @@
-﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
-
-namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
+﻿namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
 {
     /// <summary>
     /// This represents an entity for a category that the feed belongs to.
     /// </summary>
-    public class Category : CommonAttributes, ICategory
+    public class Category : CommonAttributes
     {
         #region Properties - Required
 

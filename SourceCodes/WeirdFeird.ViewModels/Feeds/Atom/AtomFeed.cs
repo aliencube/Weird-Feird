@@ -1,5 +1,4 @@
-﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
@@ -7,7 +6,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
     /// <summary>
     /// This represents the ATOM feed entity. This must be inherited.
     /// </summary>
-    public abstract class AtomFeed : IFeed
+    public abstract class AtomFeed
     {
         #region Properties - Required
 
@@ -39,7 +38,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
         /// <summary>
         /// Gets or sets one or more authors of the feed. A feed must contain at least one author element unless all of the entry elements contain at least one author element. More info [here](http://atomenabled.org/developers/syndication/#person).
         /// </summary>
-        public List<Person> Authors { get; set; }
+        public IList<Person> Authors { get; set; }
 
         /// <summary>
         /// Gets or sets a related Web page. The type of relation is defined by the <c>Rel</c> property. A feed is limited to one alternate per <c>Type</c> and <c>HrefLang</c>. A feed should contain a link back to the feed itself. More info [here](http://atomenabled.org/developers/syndication/#link).
@@ -49,12 +48,12 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
         /// <summary>
         /// Gets or sets one or more categories that the feed belong to. More info [here](http://atomenabled.org/developers/syndication/#category).
         /// </summary>
-        public List<Category> Categories { get; set; }
+        public IList<Category> Categories { get; set; }
 
         /// <summary>
         /// Gets or sets one or more contributors to the feed. More info [here](http://atomenabled.org/developers/syndication/#person).
         /// </summary>
-        public List<Person> Contributors { get; set; }
+        public IList<Person> Contributors { get; set; }
 
         /// <summary>
         /// Gets or sets the software used to generate the feed, for debugging and other purposes. Both the uri and version attributes are optional.
@@ -84,7 +83,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
         /// <summary>
         /// Gets or sets the list of entries acting as containers for metadata and data associated with the entry. This element can appear as a child of the atom:feed element, or it can appear as the document (i.e., top-level) element of a stand-alone Atom Entry Document.
         /// </summary>
-        public List<EntryItem> Entries { get; set; }
+        public IList<EntryItem> Entries { get; set; }
 
         #endregion Properties - Optional
     }

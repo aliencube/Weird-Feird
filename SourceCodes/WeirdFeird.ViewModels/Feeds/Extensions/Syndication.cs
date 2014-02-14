@@ -1,5 +1,4 @@
 ﻿using Aliencube.WeirdFeird.ViewModels.Enums;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Extensions;
 using System;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Extensions
@@ -7,7 +6,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Extensions
     /// <summary>
     /// This represents an entity for Syndication that provides syndication hints to aggregators and others picking up this RDF Site Summary (RSS) feed regarding how often it is updated. For example, if you updated your file twice an hour, updatePeriod would be "hourly" and updateFrequency would be "2". The syndication module borrows from Ian Davis's [Open Content Syndication (OCS)](http://internetalchemy.org/ocs/) directory format. It supercedes the RSS 0.91 skipDay and skipHour elements.
     /// </summary>
-    public class Syndication : ISyndication
+    public class Syndication
     {
         #region Constructors
 

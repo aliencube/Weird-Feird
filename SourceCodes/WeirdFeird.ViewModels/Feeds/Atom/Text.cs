@@ -1,5 +1,4 @@
 using Aliencube.WeirdFeird.ViewModels.Enums;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
 {
@@ -9,7 +8,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
     /// <remarks>
     /// The type attribute determines how this information is encoded (default="text").
     /// </remarks>
-    public class Text : CommonAttributes, IText
+    public class Text : CommonAttributes
     {
         #region Constructors
 

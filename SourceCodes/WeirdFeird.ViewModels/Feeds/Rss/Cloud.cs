@@ -1,12 +1,11 @@
 using Aliencube.WeirdFeird.ViewModels.Enums;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Rss;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
 {
     /// <summary>
     /// This represents an entity that allows processes to register with a cloud to be notified of updates to the channel, implementing a lightweight publish-subscribe protocol for RSS feeds.
     /// </summary>
-    public class Cloud : ICloud
+    public class Cloud
     {
         #region Properties - Required
 

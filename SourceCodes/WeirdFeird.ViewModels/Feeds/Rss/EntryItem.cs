@@ -1,4 +1,3 @@
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Rss;
 using System;
 using System.Collections.Generic;
 
@@ -13,7 +12,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
     /// contains the text (entity-encoded HTML is allowed), and the link and title may be omitted. All elements
     /// of an item are optional, however at least one of title or description must be present.
     /// </remarks>
-    public abstract class EntryItem : IItem
+    public abstract class EntryItem
     {
         #region Properties - Required
 

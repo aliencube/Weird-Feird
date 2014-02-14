@@ -1,5 +1,4 @@
 ﻿using Aliencube.WeirdFeird.ViewModels.Enums;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Rss;
 using System;
 using System.Collections.Generic;
 
@@ -8,7 +7,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
     /// <summary>
     /// This represents the channel element of the RSS feed. This must be inherited.
     /// </summary>
-    public abstract class Channel : IChannel
+    public abstract class Channel
     {
         #region Constructors
 

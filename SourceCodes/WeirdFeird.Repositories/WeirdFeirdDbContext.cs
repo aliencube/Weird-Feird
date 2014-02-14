@@ -34,7 +34,6 @@ namespace Aliencube.WeirdFeird.Repositories
         IDbSet<Editor> Editors { get; set; } // Editors
         IDbSet<Entry> Entries { get; set; } // Entries
         IDbSet<Feed> Feeds { get; set; } // Feeds
-        IDbSet<Sysdiagram> Sysdiagrams { get; set; } // sysdiagrams
         IDbSet<User> Users { get; set; } // Users
         IDbSet<UserCategory> UserCategories { get; set; } // UserCategories
         IDbSet<UserEntry> UserEntries { get; set; } // UserEntries
@@ -52,7 +51,6 @@ namespace Aliencube.WeirdFeird.Repositories
         public IDbSet<Editor> Editors { get; set; } // Editors
         public IDbSet<Entry> Entries { get; set; } // Entries
         public IDbSet<Feed> Feeds { get; set; } // Feeds
-        public IDbSet<Sysdiagram> Sysdiagrams { get; set; } // sysdiagrams
         public IDbSet<User> Users { get; set; } // Users
         public IDbSet<UserCategory> UserCategories { get; set; } // UserCategories
         public IDbSet<UserEntry> UserEntries { get; set; } // UserEntries
@@ -88,7 +86,6 @@ namespace Aliencube.WeirdFeird.Repositories
             modelBuilder.Configurations.Add(new EditorConfiguration());
             modelBuilder.Configurations.Add(new EntryConfiguration());
             modelBuilder.Configurations.Add(new FeedConfiguration());
-            modelBuilder.Configurations.Add(new SysdiagramConfiguration());
             modelBuilder.Configurations.Add(new UserConfiguration());
             modelBuilder.Configurations.Add(new UserCategoryConfiguration());
             modelBuilder.Configurations.Add(new UserEntryConfiguration());
@@ -103,7 +100,6 @@ namespace Aliencube.WeirdFeird.Repositories
             modelBuilder.Configurations.Add(new EditorConfiguration(schema));
             modelBuilder.Configurations.Add(new EntryConfiguration(schema));
             modelBuilder.Configurations.Add(new FeedConfiguration(schema));
-            modelBuilder.Configurations.Add(new SysdiagramConfiguration(schema));
             modelBuilder.Configurations.Add(new UserConfiguration(schema));
             modelBuilder.Configurations.Add(new UserCategoryConfiguration(schema));
             modelBuilder.Configurations.Add(new UserEntryConfiguration(schema));
@@ -236,16 +232,6 @@ namespace Aliencube.WeirdFeird.Repositories
             InitializePartial();
         }
         partial void InitializePartial();
-    }
-
-    // sysdiagrams
-    public partial class Sysdiagram
-    {
-        public string Name { get; set; } // name
-        public int PrincipalId { get; set; } // principal_id
-        public int DiagramId { get; set; } // diagram_id (Primary key)
-        public int? Version { get; set; } // version
-        public byte[] Definition { get; set; } // definition
     }
 
     // Users
@@ -438,24 +424,6 @@ namespace Aliencube.WeirdFeird.Repositories
             Property(x => x.Generator).HasColumnName("Generator").IsOptional().HasMaxLength(128);
             Property(x => x.DateAdded).HasColumnName("DateAdded").IsRequired();
             Property(x => x.DateLastUpdated).HasColumnName("DateLastUpdated").IsOptional();
-            InitializePartial();
-        }
-        partial void InitializePartial();
-    }
-
-    // sysdiagrams
-    internal partial class SysdiagramConfiguration : EntityTypeConfiguration<Sysdiagram>
-    {
-        public SysdiagramConfiguration(string schema = "dbo")
-        {
-            ToTable(schema + ".sysdiagrams");
-            HasKey(x => x.DiagramId);
-
-            Property(x => x.Name).HasColumnName("name").IsRequired().HasMaxLength(128);
-            Property(x => x.PrincipalId).HasColumnName("principal_id").IsRequired();
-            Property(x => x.DiagramId).HasColumnName("diagram_id").IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            Property(x => x.Version).HasColumnName("version").IsOptional();
-            Property(x => x.Definition).HasColumnName("definition").IsOptional();
             InitializePartial();
         }
         partial void InitializePartial();

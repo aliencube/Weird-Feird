@@ -1,11 +1,9 @@
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Rss;
-
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
 {
     /// <summary>
     /// This represents an entity that describes a category of the <c>Item</c>.
     /// </summary>
-    public class Category : ICategory
+    public class Category
     {
         #region Properties - Required
 

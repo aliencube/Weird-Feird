@@ -1,11 +1,9 @@
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
-
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
 {
     /// <summary>
     /// This represents an entity of the content that either contains, or links to, the complete content of the entry.
     /// </summary>
-    public class Content : CommonAttributes, IContent
+    public class Content : CommonAttributes
     {
         #region Properties - Optional
 

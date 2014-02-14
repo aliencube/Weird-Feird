@@ -1,11 +1,9 @@
-﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Extensions;
-
-namespace Aliencube.WeirdFeird.ViewModels.Feeds.Extensions
+﻿namespace Aliencube.WeirdFeird.ViewModels.Feeds.Extensions
 {
     /// <summary>
     /// This represents an entity for Well-formed Web.
     /// </summary>
-    public class WellFormedWeb : IWellFormedWeb
+    public class WellFormedWeb
     {
         #region Properties - Optional
 

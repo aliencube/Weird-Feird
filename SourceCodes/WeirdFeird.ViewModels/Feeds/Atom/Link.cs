@@ -1,11 +1,9 @@
-﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
-
-namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
+﻿namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
 {
     /// <summary>
     /// This represents an entity patterned after HTML's <c>link</c> element.
     /// </summary>
-    public class Link : CommonAttributes, ILink
+    public class Link : CommonAttributes
     {
         #region Properties - Required
 

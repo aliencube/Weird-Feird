@@ -1,4 +1,3 @@
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
 using System;
 using System.Collections.Generic;
 
@@ -7,7 +6,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
     /// <summary>
     /// This represents an entity of feed item, which is an individual entry, acting as a container for metadata and data associated with the entry.
     /// </summary>
-    public abstract class EntryItem : CommonAttributes, IEntry
+    public abstract class EntryItem : CommonAttributes
     {
         #region Properties - Required
 

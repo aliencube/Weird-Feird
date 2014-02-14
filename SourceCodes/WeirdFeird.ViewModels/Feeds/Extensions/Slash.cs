@@ -1,5 +1,4 @@
-﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Extensions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Extensions
 {
@@ -9,7 +8,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Extensions
     /// <remarks>
     /// Slash has now been released under the GNU General Public License. It is a bona fide Open Source / Free Software project.
     /// </remarks>
-    public class Slash : ISlash
+    public class Slash
     {
         #region Properties - Optional
 

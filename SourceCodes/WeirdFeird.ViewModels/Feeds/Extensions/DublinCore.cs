@@ -1,5 +1,4 @@
 ﻿using Aliencube.WeirdFeird.ViewModels.Enums;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Extensions;
 using System;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Extensions
@@ -7,7 +6,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Extensions
     /// <summary>
     /// This represents an entity for DublinCore metadata element set.
     /// </summary>
-    public class DublinCore : IDublinCore
+    public class DublinCore
     {
         #region Properties - Optional
 

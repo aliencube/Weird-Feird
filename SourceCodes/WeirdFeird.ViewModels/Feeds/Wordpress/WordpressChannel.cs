@@ -1,7 +1,6 @@
 ﻿using Aliencube.WeirdFeird.ViewModels.Feeds.Atom;
 using Aliencube.WeirdFeird.ViewModels.Feeds.Extensions;
 using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Wordpress;
 using System.Collections.Generic;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress
@@ -9,7 +8,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress
     /// <summary>
     /// This represents the channel entity for Wordpress.
     /// </summary>
-    public partial class WordpressChannel : Channel, IWordpressChannel
+    public partial class WordpressChannel : Channel
     {
         #region Properties - Optional
 

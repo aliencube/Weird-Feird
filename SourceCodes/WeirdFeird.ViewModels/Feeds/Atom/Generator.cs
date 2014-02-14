@@ -1,11 +1,9 @@
-﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
-
-namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
+﻿namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
 {
     /// <summary>
     /// This represents an entity for generator that identifies the software used to generate the feed, for debugging and other purposes.
     /// </summary>
-    public class Generator : CommonAttributes, IGenerator
+    public class Generator : CommonAttributes
     {
         #region Properties - Optional
 

@@ -1,5 +1,4 @@
-﻿using Aliencube.WeirdFeird.ViewModels.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds
@@ -7,7 +6,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds
     /// <summary>
     /// this represents the standard feed item entity.
     /// </summary>
-    public partial class FeedEntryAdapter : IFeedEntryAdapter
+    public partial class FeedEntryAdapter
     {
         #region Properties
 

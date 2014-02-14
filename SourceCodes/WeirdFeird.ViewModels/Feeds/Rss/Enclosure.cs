@@ -1,11 +1,9 @@
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Rss;
-
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
 {
     /// <summary>
     /// This represents an entity that describes a media object that is attached to the <c>Item</c>.
     /// </summary>
-    public class Enclosure : IEnclosure
+    public class Enclosure
     {
         #region Properties - Required
 

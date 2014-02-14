@@ -1,13 +1,12 @@
 ﻿using Aliencube.WeirdFeird.ViewModels.Feeds.Extensions;
 using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Wordpress;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress
 {
     /// <summary>
     /// This represents the item entity for Wordpress.
     /// </summary>
-    public partial class WordpressItem : EntryItem, IWordpressItem
+    public partial class WordpressItem : EntryItem
     {
         #region Properties - Optional
 

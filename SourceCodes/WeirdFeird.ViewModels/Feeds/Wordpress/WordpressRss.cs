@@ -1,12 +1,11 @@
 ﻿using Aliencube.WeirdFeird.ViewModels.Feeds.Rss;
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Wordpress;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress
 {
     /// <summary>
     /// This represents the RSS feed entity for Wordpress.
     /// </summary>
-    public partial class WordpressRss : RssFeed, IWordpressRss
+    public partial class WordpressRss : RssFeed
     {
         #region Properties - Required
 

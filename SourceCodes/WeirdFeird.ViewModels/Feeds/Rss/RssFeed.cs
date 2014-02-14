@@ -1,6 +1,4 @@
-﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Rss;
-
-namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
+﻿namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
 {
     /// <summary>
     /// This represents the RSS feed entity. This must be inherited.
@@ -8,7 +6,7 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
     /// <remarks>
     /// The structure of this class is based on http://www.rssboard.org/rss-specification.
     /// </remarks>
-    public abstract class RssFeed : IRss
+    public abstract class RssFeed
     {
         #region Constructors
 

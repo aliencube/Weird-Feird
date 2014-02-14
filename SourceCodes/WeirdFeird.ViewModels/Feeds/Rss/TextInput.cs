@@ -1,11 +1,9 @@
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Rss;
-
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
 {
     /// <summary>
     /// This represents an entity that specifies a text input box that can be displayed with the channel/feed.
     /// </summary>
-    public class TextInput : ITextInput
+    public class TextInput
     {
         #region Properties - Required
 

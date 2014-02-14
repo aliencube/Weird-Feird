@@ -1,11 +1,9 @@
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Rss;
-
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
 {
     /// <summary>
     /// This represents an entity indicating the permalink of the <c>Item</c>.
     /// </summary>
-    public class Guid : IGuid
+    public class Guid
     {
         #region Properties - Required
 

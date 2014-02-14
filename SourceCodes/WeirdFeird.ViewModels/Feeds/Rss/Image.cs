@@ -1,11 +1,9 @@
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Rss;
-
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Rss
 {
     /// <summary>
     /// This represents an entity consumed in RSS channel/feed, which is a GIF, JPEG or PNG image that can be displayed with the channel/feed.
     /// </summary>
-    public class Image : IImage
+    public class Image
     {
         #region Constructors
 

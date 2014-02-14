@@ -1,11 +1,9 @@
-﻿using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
-
-namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
+﻿namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
 {
     /// <summary>
     /// This represents an entity for a person.
     /// </summary>
-    public class Person : CommonAttributes, IPerson
+    public class Person : CommonAttributes
     {
         #region Properties - Required
 

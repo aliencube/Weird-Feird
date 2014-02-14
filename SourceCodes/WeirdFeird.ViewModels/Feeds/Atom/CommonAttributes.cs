@@ -1,11 +1,9 @@
-using Aliencube.WeirdFeird.ViewModels.Interfaces.Atom;
-
 namespace Aliencube.WeirdFeird.ViewModels.Feeds.Atom
 {
     /// <summary>
     /// This represents an entity describing common attributes.
     /// </summary>
-    public abstract class CommonAttributes : ICommonAttribute
+    public abstract class CommonAttributes
     {
         #region Properties - Optional
 
