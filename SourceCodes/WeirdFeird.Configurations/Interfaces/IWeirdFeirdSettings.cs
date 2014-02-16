@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aliencube.WeirdFeird.Configurations.Interfaces
 {
@@ -11,10 +7,19 @@ namespace Aliencube.WeirdFeird.Configurations.Interfaces
     /// </summary>
     public interface IWeirdFeirdSettings : IDisposable
     {
+        #region Properties
+
         /// <summary>
         /// Gets or sets the proxy server settings element.
         /// This is optional.
         /// </summary>
         ProxyElement Proxy { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of generator element groups.
+        /// </summary>
+        GeneratorElementCollection Generators { get; set; }
+
+        #endregion Properties
     }
 }

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Aliencube.WeirdFeird.Configurations.Interfaces;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Aliencube.WeirdFeird.Configurations.Interfaces;
 
 namespace Aliencube.WeirdFeird.Configurations
 {
@@ -22,11 +17,21 @@ namespace Aliencube.WeirdFeird.Configurations
         [ConfigurationProperty("proxy", IsRequired = false)]
         public ProxyElement Proxy
         {
-            get { return (ProxyElement) this["proxy"]; }
+            get { return (ProxyElement)this["proxy"]; }
             set { this["proxy"] = value; }
         }
 
-        #endregion
+        /// <summary>
+        /// Gets or sets the collection of generator element groups.
+        /// </summary>
+        [ConfigurationProperty("generators", IsRequired = false)]
+        public GeneratorElementCollection Generators
+        {
+            get { return (GeneratorElementCollection)this["generators"]; }
+            set { this["generators"] = value; }
+        }
+
+        #endregion Properties
 
         #region Methods
 

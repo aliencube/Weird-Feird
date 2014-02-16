@@ -43,6 +43,8 @@
     <Compile Include="..\..\Documents\Properties\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="GeneratorElement.cs" />
+    <Compile Include="GeneratorElementCollection.cs" />
     <Compile Include="ProxyElement.cs" />
     <Compile Include="Interfaces\IWeirdFeirdSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

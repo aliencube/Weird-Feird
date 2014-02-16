@@ -42,7 +42,29 @@ namespace Aliencube.WeirdFeird.Configurations.Tests
         [TestCase(true)]
         public void TestWhetherToUseProxyOrNot(bool expected)
         {
-            Assert.AreEqual(expected, this._settings.Proxy.Use);
+            var proxy = this._settings.Proxy;
+
+            Assert.AreEqual(expected, proxy.Use);
+        }
+
+        /// <summary>
+        /// Tests whether to use proxy server or not.
+        /// </summary>
+        /// <param name="key">Key for generator.</param>
+        /// <param name="keyExists">Value that specifies whether the key exists or not.</param>
+        /// <param name="valueExists">Value that specifies whether the value exists or not.</param>
+        [Test]
+        [TestCase("Wordpress", true, true)]
+        [TestCase("Blogger", false, false)]
+        public void GetGenerator_SendKey_GetGeneratorRegexValue(string key, bool keyExists, bool valueExists)
+        {
+            var generator = this._settings
+                                .Generators
+                                .Cast<GeneratorElement>()
+                                .FirstOrDefault(p => p.Key.ToLower() == key.ToLower());
+
+            Assert.AreEqual(keyExists, generator != null);
+            Assert.AreEqual(valueExists, generator != null && !String.IsNullOrWhiteSpace(generator.Value));
         }
 
         #endregion
