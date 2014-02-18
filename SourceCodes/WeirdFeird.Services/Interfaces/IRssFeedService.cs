@@ -26,20 +26,6 @@ namespace Aliencube.WeirdFeird.Services.Interfaces
         XElement GetChannel(XDocument feed);
 
         /// <summary>
-        /// Gets the generator element from the feed document.
-        /// </summary>
-        /// <param name="feed">XDocument feed instance.</param>
-        /// <returns>Returns the XElement generator instance.</returns>
-        XElement GetGenerator(XDocument feed);
-
-        /// <summary>
-        /// Gets the generator element from the channel element.
-        /// </summary>
-        /// <param name="channel">XElement channel instance.</param>
-        /// <returns>Returns the XElement generator instance.</returns>
-        XElement GetGenerator(XElement channel);
-
-        /// <summary>
         /// Gets the list of category instances from the list of category elements.
         /// </summary>
         /// <param name="elements">List of category elements.</param>

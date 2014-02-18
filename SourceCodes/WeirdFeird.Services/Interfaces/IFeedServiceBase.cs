@@ -1,4 +1,5 @@
-﻿using Aliencube.WeirdFeird.ViewModels.Feeds;
+﻿using Aliencube.WeirdFeird.Enums;
+using Aliencube.WeirdFeird.ViewModels.Feeds;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -36,25 +37,39 @@ namespace Aliencube.WeirdFeird.Services.Interfaces
         Task<XDocument> GetFeedXmlAsync(string feedUrl);
 
         /// <summary>
-        /// Checks wether the given XML document is for RSS feed or not.
+        /// Gets the root element from the feed XML document.
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
-        /// <returns>Returns <c>True</c>, if the name of the root element is "rss"; otherwise returns <c>False</c>.</returns>
-        bool IsRss(XDocument feed);
+        /// <returns>Returns the XElement root instance.</returns>
+        XElement GetRootElement(XDocument feed);
 
         /// <summary>
-        /// Checks wether the given XML document is for ATOM feed or not.
+        /// Gets the generator element from the feed XML document.
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
-        /// <returns>Returns <c>True</c>, if the name of the root element is "feed"; otherwise returns <c>False</c>.</returns>
-        bool IsAtom(XDocument feed);
+        /// <returns>Returns the XElement generator instance.</returns>
+        XElement GetGeneratorElement(XDocument feed);
 
         /// <summary>
-        /// Gets the root element from the feed document.
+        /// Gets the feed type.
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
-        /// <returns>Returns the XElement channel instance.</returns>
-        XElement GetRoot(XDocument feed);
+        /// <returns>Returns the feed type.</returns>
+        FeedType GetFeedType(XDocument feed);
+
+        /// <summary>
+        /// Gets the feed generator.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns the feed generator.</returns>
+        FeedGenerator GetFeedGenerator(XDocument feed);
+
+        /// <summary>
+        /// Gets the standardised feed instance from the feed XML document.
+        /// </summary>
+        /// <param name="feed">XDocument feed instance.</param>
+        /// <returns>Returns the standardised feed instance.</returns>
+        FeedAdapter GetFeed(XDocument feed);
 
         /// <summary>
         /// Gets the standard FeedAdapter instance from the feed instance.
@@ -71,13 +86,6 @@ namespace Aliencube.WeirdFeird.Services.Interfaces
         /// <param name="entries">List of feed item instances.</param>
         /// <returns>Returns the list of standard Feed Entry instances.</returns>
         IList<FeedEntryAdapter> GetFeedEntryAdapters<T>(IList<T> entries);
-
-        /// <summary>
-        /// Gets the standardised feed instance from the feed XML document.
-        /// </summary>
-        /// <param name="feed">XDocument feed instance.</param>
-        /// <returns>Returns the standardised feed instance.</returns>
-        FeedAdapter GetFeed(XDocument feed);
 
         #endregion Methods
     }

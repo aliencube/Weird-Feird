@@ -2,7 +2,6 @@ using Aliencube.WeirdFeird.Configurations;
 using Aliencube.WeirdFeird.Configurations.Interfaces;
 using Aliencube.WeirdFeird.Services.Interfaces;
 using NUnit.Framework;
-using NSubstitute;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;

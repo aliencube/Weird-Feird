@@ -39,9 +39,9 @@ namespace Aliencube.WeirdFeird.Exceptions
         /// <summary>
         /// Initialises a new instance of the FeedElementNotFoundException class.
         /// </summary>
-        /// <param name="message">A message that describes the error.</param>
         /// <param name="elementName">Element name that throws the exception.</param>
-        public FeedElementNotFoundException(string message, string elementName)
+        /// <param name="message">A message that describes the error.</param>
+        public FeedElementNotFoundException(string elementName, string message)
             : base(message)
         {
             this.ElementName = elementName;
@@ -71,7 +71,7 @@ namespace Aliencube.WeirdFeird.Exceptions
         /// If the innerException parameter is not a null reference,
         /// the current exception is raised in a catch block that handles the inner exception.
         /// </param>
-        public FeedElementNotFoundException(string message, string elementName, Exception innerException)
+        public FeedElementNotFoundException(string elementName, string message, Exception innerException)
             : base(message, innerException)
         {
             this.ElementName = elementName;

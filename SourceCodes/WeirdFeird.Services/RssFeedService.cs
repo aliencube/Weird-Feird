@@ -19,11 +19,21 @@ namespace Aliencube.WeirdFeird.Services
         #region Constructors
 
         /// <summary>
-        /// Initialises a new instance of the RssProvider class.
+        /// Initialises a new instance of the RssFeedService class.
         /// </summary>
         /// <param name="settings">Configuration settings instance for Weird-Feird.</param>
         protected RssFeedService(IWeirdFeirdSettings settings)
             : base(settings)
+        {
+        }
+
+        /// <summary>
+        /// Initialises a new instance of the RssFeedService class.
+        /// </summary>
+        /// <param name="settings">Configuration settings instance for Weird-Feird.</param>
+        /// <param name="feedUrl">Feed URL.</param>
+        protected RssFeedService(IWeirdFeirdSettings settings, string feedUrl)
+            : base(settings, feedUrl)
         {
         }
 
@@ -46,38 +56,12 @@ namespace Aliencube.WeirdFeird.Services
         /// <exception cref="InvalidFeedFormatException">Throws when no channel element is found.</exception>
         public XElement GetChannel(XDocument feed)
         {
-            var root = this.GetRoot(feed);
+            var root = this.GetRootElement(feed);
             var channel = root.Element("channel");
             if (channel == null)
-                throw new InvalidFeedFormatException("No channel element found");
+                throw new FeedElementNotFoundException("No channel element found", "channel");
 
             return channel;
-        }
-
-        /// <summary>
-        /// Gets the generator element from the feed document.
-        /// </summary>
-        /// <param name="feed">XDocument feed instance.</param>
-        /// <returns>Returns the XElement generator instance.</returns>
-        public XElement GetGenerator(XDocument feed)
-        {
-            var channel = this.GetChannel(feed);
-
-            return this.GetGenerator(channel);
-        }
-
-        /// <summary>
-        /// Gets the generator element from the channel element.
-        /// </summary>
-        /// <param name="channel">XElement channel instance.</param>
-        /// <returns>Returns the XElement generator instance.</returns>
-        /// <exception cref="ArgumentNullException">Throws when channel is NULL.</exception>
-        public XElement GetGenerator(XElement channel)
-        {
-            if (channel == null)
-                throw new ArgumentNullException("channel", "No channel provided");
-
-            return channel.Element("generator");
         }
 
         /// <summary>

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{928B8328-2361-42A4-B07A-999BAE60FBC4}</ProjectGuid>
+    <ProjectGuid>{F3E9476E-B422-42D9-995C-1FC8F91BEB8B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Aliencube.WeirdFeird.Services</RootNamespace>
-    <AssemblyName>Aliencube.WeirdFeird.Services</AssemblyName>
+    <RootNamespace>Aliencube.WeirdFeird.Helpers</RootNamespace>
+    <AssemblyName>Aliencube.WeirdFeird.Helpers</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,14 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,10 +43,8 @@
     <Compile Include="..\..\Documents\Properties\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Interfaces\IFeedServiceBase.cs" />
-    <Compile Include="Interfaces\IRssFeedService.cs" />
-    <Compile Include="Interfaces\IWordpressRssService.cs" />
-    <Compile Include="FeedServiceBase.cs" />
+    <Compile Include="GeneratorHelper.cs" />
+    <Compile Include="Interfaces\IGeneratorHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,25 +56,6 @@
       <Project>{ec06c04a-3fb7-4de5-96b7-03ff7eb89912}</Project>
       <Name>WeirdFeird.Enums</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WeirdFeird.Exceptions\WeirdFeird.Exceptions.csproj">
-      <Project>{346d2014-306d-4cbd-9f81-3e8a8b3a79ec}</Project>
-      <Name>WeirdFeird.Exceptions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WeirdFeird.Extensions\WeirdFeird.Extensions.csproj">
-      <Project>{31cc8fd6-37c2-4bc9-a48c-2cc73994616a}</Project>
-      <Name>WeirdFeird.Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WeirdFeird.Helpers\WeirdFeird.Helpers.csproj">
-      <Project>{f3e9476e-b422-42d9-995c-1fc8f91beb8b}</Project>
-      <Name>WeirdFeird.Helpers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WeirdFeird.ViewModels\WeirdFeird.ViewModels.csproj">
-      <Project>{69ca440e-46d9-4906-a49c-79f0da3992b8}</Project>
-      <Name>WeirdFeird.ViewModels</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -58,6 +58,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Repositories", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Enums", "WeirdFeird.Enums\WeirdFeird.Enums.csproj", "{EC06C04A-3FB7-4DE5-96B7-03FF7EB89912}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeirdFeird.Helpers", "WeirdFeird.Helpers\WeirdFeird.Helpers.csproj", "{F3E9476E-B422-42D9-995C-1FC8F91BEB8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{EC06C04A-3FB7-4DE5-96B7-03FF7EB89912}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC06C04A-3FB7-4DE5-96B7-03FF7EB89912}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC06C04A-3FB7-4DE5-96B7-03FF7EB89912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3E9476E-B422-42D9-995C-1FC8F91BEB8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3E9476E-B422-42D9-995C-1FC8F91BEB8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3E9476E-B422-42D9-995C-1FC8F91BEB8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3E9476E-B422-42D9-995C-1FC8F91BEB8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

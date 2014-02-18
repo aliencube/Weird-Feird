@@ -24,11 +24,21 @@ namespace Aliencube.WeirdFeird.Services
         #region Constructors
 
         /// <summary>
-        /// Initialises a new instance of the WordpressProvider class.
+        /// Initialises a new instance of the WordpressRssService class.
         /// </summary>
         /// <param name="settings">Configuration settings instance for Weird-Feird.</param>
         public WordpressRssService(IWeirdFeirdSettings settings)
             : base(settings)
+        {
+        }
+
+        /// <summary>
+        /// Initialises a new instance of the WordpressRssService class.
+        /// </summary>
+        /// <param name="settings">Configuration settings instance for Weird-Feird.</param>
+        /// <param name="feedUrl">Feed URL.</param>
+        public WordpressRssService(IWeirdFeirdSettings settings, string feedUrl)
+            : base(settings, feedUrl)
         {
         }
 
