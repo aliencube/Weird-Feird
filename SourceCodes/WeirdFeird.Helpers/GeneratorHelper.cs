@@ -32,25 +32,25 @@ namespace Aliencube.WeirdFeird.Helpers
 
         private IWeirdFeirdSettings _settings;
 
-        private IDictionary<string, Regex> _regularExpressions;
+        private IDictionary<string, Regex> _generatorPatterns;
 
         /// <summary>
         /// Gets the list of regular expressions to identify generator patterns.
         /// </summary>
-        public IDictionary<string, Regex> ReguarExpressions
+        public IDictionary<string, Regex> GeneratorPatterns
         {
             get
             {
-                if (this._regularExpressions == null || !this._regularExpressions.Any())
+                if (this._generatorPatterns == null || !this._generatorPatterns.Any())
                 {
-                    this._regularExpressions = this._settings
-                                                   .Generators
-                                                   .Cast<GeneratorElement>()
-                                                   .ToDictionary(p => p.Key,
-                                                                 q => new Regex(q.Value,
-                                                                                RegexOptions.Compiled | RegexOptions.IgnoreCase));
+                    this._generatorPatterns = this._settings
+                                                  .Generators
+                                                  .Cast<GeneratorElement>()
+                                                  .ToDictionary(p => p.Key,
+                                                                q => new Regex(q.Value,
+                                                                               RegexOptions.Compiled | RegexOptions.IgnoreCase));
                 }
-                return this._regularExpressions;
+                return this._generatorPatterns;
             }
         }
 
@@ -68,7 +68,7 @@ namespace Aliencube.WeirdFeird.Helpers
             var generator = FeedGenerator.Unknown;
             try
             {
-                var expression = this.ReguarExpressions
+                var expression = this.GeneratorPatterns
                                      .SingleOrDefault(p => p.Value.IsMatch(element.Value));
                 if (expression.Equals(default(KeyValuePair<string, Regex>)))
                     return FeedGenerator.Unknown;
@@ -80,6 +80,14 @@ namespace Aliencube.WeirdFeird.Helpers
             }
             catch { }
             return generator;
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing,
+        /// or resetting unmanaged resources.
+        /// </summary>
+        public virtual void Dispose()
+        {
         }
 
         #endregion Methods

@@ -1,4 +1,5 @@
 ﻿using Aliencube.WeirdFeird.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -8,14 +9,14 @@ namespace Aliencube.WeirdFeird.Helpers.Interfaces
     /// <summary>
     /// This provides interfaces to the GeneratorHelper class.
     /// </summary>
-    public interface IGeneratorHelper
+    public interface IGeneratorHelper : IDisposable
     {
         #region Properties
 
         /// <summary>
         /// Gets the list of regular expressions to identify generator patterns.
         /// </summary>
-        IDictionary<string, Regex> ReguarExpressions { get; }
+        IDictionary<string, Regex> GeneratorPatterns { get; }
 
         #endregion Properties
 
