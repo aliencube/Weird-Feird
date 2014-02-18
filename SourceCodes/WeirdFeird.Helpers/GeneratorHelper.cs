@@ -65,16 +65,20 @@ namespace Aliencube.WeirdFeird.Helpers
         /// <returns>Returns the feed generator.</returns>
         public FeedGenerator GetFeedGenerator(XElement element)
         {
-            var expression = this.ReguarExpressions
-                                 .FirstOrDefault(p => p.Value.IsMatch(element.Value));
-            if (expression.Equals(default(KeyValuePair<string, Regex>)))
-                return FeedGenerator.Unknown;
+            var generator = FeedGenerator.Unknown;
+            try
+            {
+                var expression = this.ReguarExpressions
+                                     .SingleOrDefault(p => p.Value.IsMatch(element.Value));
+                if (expression.Equals(default(KeyValuePair<string, Regex>)))
+                    return FeedGenerator.Unknown;
 
-            //  Key is expected as one of the feed generator enum value.
-            FeedGenerator parsedGenerator;
-            var generator = Enum.TryParse(expression.Key, true, out parsedGenerator)
-                                ? parsedGenerator
-                                : FeedGenerator.Unknown;
+                //  Key is expected as one of the feed generator enum value.
+                FeedGenerator parsedGenerator;
+                if (Enum.TryParse(expression.Key, true, out parsedGenerator))
+                    generator = parsedGenerator;
+            }
+            catch { }
             return generator;
         }
 

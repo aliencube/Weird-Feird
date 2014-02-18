@@ -46,11 +46,6 @@ namespace Aliencube.WeirdFeird.Services
         /// </summary>
         public abstract IDictionary<string, XNamespace> Namespaces { get; }
 
-        /// <summary>
-        /// Gets the regular expression instance to check feed generator.
-        /// </summary>
-        public abstract Regex Generator { get; }
-
         #endregion Properties
 
         #region Methods

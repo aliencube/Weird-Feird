@@ -20,11 +20,6 @@ namespace Aliencube.WeirdFeird.Services.Interfaces
         /// </summary>
         IDictionary<string, XNamespace> Namespaces { get; }
 
-        /// <summary>
-        /// Gets the regular expression instance to check feed generator.
-        /// </summary>
-        Regex Generator { get; }
-
         #endregion Properties
 
         #region Methods

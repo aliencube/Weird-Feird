@@ -53,6 +53,8 @@
     <Compile Include="Interfaces\IWordpressRssService.cs" />
     <Compile Include="FeedServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RssFeedService.cs" />
+    <Compile Include="WordpressRssService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WeirdFeird.Configurations\WeirdFeird.Configurations.csproj">

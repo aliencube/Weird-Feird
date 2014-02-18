@@ -9,7 +9,6 @@ using Aliencube.WeirdFeird.ViewModels.Feeds.Wordpress;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Content = Aliencube.WeirdFeird.ViewModels.Feeds.Extensions.Content;
 using Guid = Aliencube.WeirdFeird.ViewModels.Feeds.Rss.Guid;
@@ -29,16 +28,6 @@ namespace Aliencube.WeirdFeird.Services
         /// <param name="settings">Configuration settings instance for Weird-Feird.</param>
         public WordpressRssService(IWeirdFeirdSettings settings)
             : base(settings)
-        {
-        }
-
-        /// <summary>
-        /// Initialises a new instance of the WordpressRssService class.
-        /// </summary>
-        /// <param name="settings">Configuration settings instance for Weird-Feird.</param>
-        /// <param name="feedUrl">Feed URL.</param>
-        public WordpressRssService(IWeirdFeirdSettings settings, string feedUrl)
-            : base(settings, feedUrl)
         {
         }
 
@@ -71,40 +60,9 @@ namespace Aliencube.WeirdFeird.Services
             }
         }
 
-        private Regex _generator;
-
-        /// <summary>
-        /// Gets the regular expression instance to check feed generator.
-        /// </summary>
-        public override Regex Generator
-        {
-            get
-            {
-                if (this._generator == null)
-                    this._generator = new Regex(@"^http://wordpress\.(com|org)",
-                                                RegexOptions.Compiled | RegexOptions.IgnoreCase);
-                return this._generator;
-            }
-        }
-
         #endregion Properties
 
         #region Methods
-
-        /// <summary>
-        /// Checks whether the given XML document is for Wordpress feed or not.
-        /// </summary>
-        /// <param name="feed">XDocument feed instance.</param>
-        /// <returns>Returns <c>True</c>, if the generator element identifies it is a Wordpress feed; otherwise returns <c>False</c>.</returns>
-        public override bool IsWordpress(XDocument feed)
-        {
-            var generator = this.GetGenerator(feed);
-            if (generator == null)
-                return false;
-
-            var value = generator.Value;
-            return this.Generator.IsMatch(value);
-        }
 
         /// <summary>
         /// Gets the Wordpress RSS instance from the feed document.
@@ -248,7 +206,7 @@ namespace Aliencube.WeirdFeird.Services
         /// <exception cref="InvalidFeedFormatException">Throws when feed format is not Wordpress RSS.</exception>
         public override FeedAdapter GetFeedAdapter<T>(T feed)
         {
-            if (feed == null)
+            if (feed.Equals(default(T)))
                 throw new ArgumentNullException("feed", "No feed found");
 
             var instance = feed as WordpressRss;
@@ -263,7 +221,7 @@ namespace Aliencube.WeirdFeird.Services
                               FeedLink = instance.Channel.AtomLink.Href,
                               Generator = instance.Channel.Generator,
                               DateLastUpdated = instance.Channel.LastBuildDate,
-                              Editors = new List<string>(){ instance.Channel.ManagingEditor},
+                              Editors = new List<string>() { instance.Channel.ManagingEditor },
                               Entries = this.GetFeedEntryAdapters(instance.Channel.Items),
                           };
             return adapter;
