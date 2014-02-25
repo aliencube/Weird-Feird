@@ -104,7 +104,7 @@ namespace Aliencube.WeirdFeird.Services
         public XElement GetGeneratorElement(XDocument feed)
         {
             var root = this.GetRootElement(feed);
-            var element = root.Elements("generator").FirstOrDefault();
+            var element = root.DescendantsAndSelf("generator").FirstOrDefault();
             if (element == null)
                 throw new FeedElementNotFoundException("generator", "No generator element found");
 

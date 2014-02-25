@@ -57,6 +57,9 @@ namespace Aliencube.WeirdFeird.Services
             if (elements == null || !elements.Any())
                 throw new ArgumentNullException("elements", "No elements provided");
 
+            if (elements.All(p => p.Name.ToString() != "category"))
+                throw new FeedElementNotFoundException("category", "No category element provided");
+
             var categories = elements.Select(q => new Category()
                                                   {
                                                       Domain = q.GetAttribute("domain").GetString(false),

@@ -30,7 +30,7 @@ namespace Aliencube.WeirdFeird.Helpers
 
         #region Properties
 
-        private IWeirdFeirdSettings _settings;
+        private readonly IWeirdFeirdSettings _settings;
 
         private IDictionary<string, Regex> _generatorPatterns;
 

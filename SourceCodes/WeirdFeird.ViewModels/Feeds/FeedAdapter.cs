@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace Aliencube.WeirdFeird.ViewModels.Feeds
 {
@@ -9,6 +10,11 @@ namespace Aliencube.WeirdFeird.ViewModels.Feeds
     public partial class FeedAdapter
     {
         #region Properties
+
+        /// <summary>
+        /// Gets or sets the original feed XML document.
+        /// </summary>
+        public XDocument FeedXml { get; set; }
 
         /// <summary>
         /// Gets or sets the title of the feed.
