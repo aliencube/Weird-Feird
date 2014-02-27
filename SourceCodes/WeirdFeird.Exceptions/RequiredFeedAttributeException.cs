@@ -8,6 +8,8 @@ namespace Aliencube.WeirdFeird.Exceptions
     /// </summary>
     public class RequiredFeedAttributeException : ApplicationException
     {
+        #region Constructors
+
         /// <summary>
         /// Initialises a new instance of the RequiredFeedAttributeException class.
         /// </summary>
@@ -48,5 +50,7 @@ namespace Aliencube.WeirdFeird.Exceptions
             : base(message, innerException)
         {
         }
+
+        #endregion Constructors
     }
 }

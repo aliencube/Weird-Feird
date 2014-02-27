@@ -8,6 +8,8 @@ namespace Aliencube.WeirdFeird.Exceptions
     /// </summary>
     public class InvalidFeedFormatException : ApplicationException
     {
+        #region Constructors
+
         /// <summary>
         /// Initialises a new instance of the InvalidFeedFormatException class.
         /// </summary>
@@ -48,5 +50,7 @@ namespace Aliencube.WeirdFeird.Exceptions
             : base(message, innerException)
         {
         }
+
+        #endregion Constructors
     }
 }

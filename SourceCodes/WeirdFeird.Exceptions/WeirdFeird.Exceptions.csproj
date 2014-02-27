@@ -42,6 +42,7 @@
     <Compile Include="..\..\Documents\Properties\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="DbContextAlreadyExistException.cs" />
     <Compile Include="FeedElementNotFoundException.cs" />
     <Compile Include="InvalidFeedFormatException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,6 +9,7 @@ namespace Aliencube.WeirdFeird.Exceptions
     public class FeedElementNotFoundException : ApplicationException
     {
         #region Constructors
+
         /// <summary>
         /// Initialises a new instance of the FeedElementNotFoundException class.
         /// </summary>
@@ -76,7 +77,8 @@ namespace Aliencube.WeirdFeird.Exceptions
         {
             this.ElementName = elementName;
         }
-        #endregion
+
+        #endregion Constructors
 
         #region Properties
 
@@ -85,6 +87,6 @@ namespace Aliencube.WeirdFeird.Exceptions
         /// </summary>
         public string ElementName { get; set; }
 
-        #endregion
+        #endregion Properties
     }
 }
