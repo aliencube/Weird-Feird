@@ -48,6 +48,8 @@
     <Compile Include="..\..\Documents\Properties\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="FeedManagerService.cs" />
+    <Compile Include="Interfaces\IFeedManagerService.cs" />
     <Compile Include="Interfaces\IFeedServiceBase.cs" />
     <Compile Include="Interfaces\IRssFeedService.cs" />
     <Compile Include="Interfaces\IWordpressRssService.cs" />
@@ -76,6 +78,10 @@
     <ProjectReference Include="..\WeirdFeird.Helpers\WeirdFeird.Helpers.csproj">
       <Project>{f3e9476e-b422-42d9-995c-1fc8f91beb8b}</Project>
       <Name>WeirdFeird.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WeirdFeird.Repositories\WeirdFeird.Repositories.csproj">
+      <Project>{6502ec32-f065-4637-aae1-d72013bbb2b6}</Project>
+      <Name>WeirdFeird.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\WeirdFeird.ViewModels\WeirdFeird.ViewModels.csproj">
       <Project>{69ca440e-46d9-4906-a49c-79f0da3992b8}</Project>
