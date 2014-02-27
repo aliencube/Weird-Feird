@@ -12,6 +12,10 @@ namespace Aliencube.WeirdFeird.Repositories
     {
         #region Constructors
 
+        /// <summary>
+        /// Initialises a new instance of the AuthorRepository class.
+        /// </summary>
+        /// <param name="context">WeirdFeirdDbContext instance.</param>
         public AuthorRepository(IWeirdFeirdDbContext context)
             : base(context)
         {
