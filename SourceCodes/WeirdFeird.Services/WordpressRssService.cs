@@ -96,6 +96,7 @@ namespace Aliencube.WeirdFeird.Services
         /// <param name="element">XElement channel instance.</param>
         /// <returns>Returns the Wordpress Channel instance.</returns>
         /// <exception cref="ArgumentNullException">Throws when element is NULL.</exception>
+        /// <exception cref="FeedElementNotFoundException">Throws when no channel element is found.</exception>
         public WordpressChannel GetWordpressChannel(XElement element)
         {
             if (element == null)
@@ -153,6 +154,7 @@ namespace Aliencube.WeirdFeird.Services
         /// <param name="elements">List of XElement item instances.</param>
         /// <returns>Returns the list of Wordpress Item instances.</returns>
         /// <exception cref="ArgumentNullException">Throws when elements is NULL or does not contain any item.</exception>
+        /// <exception cref="FeedElementNotFoundException">Throws when no item element is found.</exception>
         public IList<WordpressItem> GetWordpressItems(IList<XElement> elements)
         {
             if (elements == null || !elements.Any())

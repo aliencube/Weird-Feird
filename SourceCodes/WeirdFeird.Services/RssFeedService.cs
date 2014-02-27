@@ -36,7 +36,7 @@ namespace Aliencube.WeirdFeird.Services
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
         /// <returns>Returns the XElement channel instance.</returns>
-        /// <exception cref="InvalidFeedFormatException">Throws when no channel element is found.</exception>
+        /// <exception cref="FeedElementNotFoundException">Throws when no channel element is found.</exception>
         public XElement GetChannel(XDocument feed)
         {
             var root = this.GetRootElement(feed);
@@ -52,6 +52,8 @@ namespace Aliencube.WeirdFeird.Services
         /// </summary>
         /// <param name="elements">List of category elements.</param>
         /// <returns>Returns the list of category instances.</returns>
+        /// <exception cref="ArgumentNullException">Throws when the list of elements is NULL.</exception>
+        /// <exception cref="FeedElementNotFoundException">Throws when no category element is found.</exception>
         public IList<Category> GetCategories(IList<XElement> elements)
         {
             if (elements == null || !elements.Any())

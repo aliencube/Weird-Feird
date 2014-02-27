@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -55,7 +54,7 @@ namespace Aliencube.WeirdFeird.Services
         /// </summary>
         /// <param name="feedUrl">Feed URL.</param>
         /// <returns>Returns the XML feed contents from given feed URL asynchronously.</returns>
-        /// <exception cref="NullReferenceException">Throws when the <c>FeedUrl</c> property value is NULL or empty.</exception>
+        /// <exception cref="ArgumentNullException">Throws when the <c>FeedUrl</c> property value is NULL or empty.</exception>
         public async Task<XDocument> GetFeedXmlAsync(string feedUrl)
         {
             if (String.IsNullOrWhiteSpace(feedUrl))
@@ -83,7 +82,7 @@ namespace Aliencube.WeirdFeird.Services
         /// <param name="feed">XDocument feed instance.</param>
         /// <returns>Returns the XElement root instance.</returns>
         /// <exception cref="ArgumentNullException">Throws when feed is NULL.</exception>
-        /// <exception cref="InvalidFeedFormatException">Throws when no root element is found.</exception>
+        /// <exception cref="FeedElementNotFoundException">Throws when no root element is found.</exception>
         public XElement GetRootElement(XDocument feed)
         {
             if (feed == null)
@@ -101,6 +100,7 @@ namespace Aliencube.WeirdFeird.Services
         /// </summary>
         /// <param name="feed">XDocument feed instance.</param>
         /// <returns>Returns the XElement generator instance.</returns>
+        /// <exception cref="FeedElementNotFoundException">Throws when no generator element is found.</exception>
         public XElement GetGeneratorElement(XDocument feed)
         {
             var root = this.GetRootElement(feed);
