@@ -1,5 +1,6 @@
 ﻿using Aliencube.WeirdFeird.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -28,6 +29,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Adds a new UserCategory object to the repository.
         /// </summary>
+        /// <typeparam name="T">Type of UserCategory.</typeparam>
         /// <param name="userCategory">UserCategory object.</param>
         /// <exception cref="ArgumentNullException">Throws when userCategory object is NULL.</exception>
         public override void Add<T>(T userCategory)
@@ -41,6 +43,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Gets the UserCategory object by UserCategoryId.
         /// </summary>
+        /// <typeparam name="T">Type of UserCategory.</typeparam>
         /// <param name="userCategoryId">UserCategory Id.</param>
         /// <returns>Returns the UserCategory object.</returns>
         /// <exception cref="ArgumentNullException">Throws when userCategory object is NULL.</exception>
@@ -56,8 +59,20 @@ namespace Aliencube.WeirdFeird.Repositories
         }
 
         /// <summary>
+        /// Gets the list of UserCategory objects.
+        /// </summary>
+        /// <typeparam name="T">Type of UserCategory.</typeparam>
+        /// <returns>Returns the list of UserCategory objects.</returns>
+        public override IList<T> Get<T>()
+        {
+            var userCategories = this.Context.UserCategories.OrderBy(p => p.UserCategoryId);
+            return (IList<T>)Convert.ChangeType(userCategories, typeof(IList<T>));
+        }
+
+        /// <summary>
         /// Updates the UserCategory object.
         /// </summary>
+        /// <typeparam name="T">Type of UserCategory.</typeparam>
         /// <param name="userCategory">UserCategory object.</param>
         /// <exception cref="ArgumentNullException">Throws when userCategory object is NULL.</exception>
         public override void Update<T>(T userCategory)
@@ -74,6 +89,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Deletes the UserCategory object from the repository.
         /// </summary>
+        /// <typeparam name="T">Type of UserCategory.</typeparam>
         /// <param name="userCategory">UserCategory object.</param>
         /// <exception cref="ArgumentNullException">Throws when userCategory object is NULL.</exception>
         public override void Delete<T>(T userCategory)

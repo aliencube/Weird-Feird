@@ -1,5 +1,6 @@
 ﻿using Aliencube.WeirdFeird.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -28,6 +29,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Adds a new UserEntry object to the repository.
         /// </summary>
+        /// <typeparam name="T">Type of UserEntry.</typeparam>
         /// <param name="userEntry">UserEntry object.</param>
         /// <exception cref="ArgumentNullException">Throws when userEntry object is NULL.</exception>
         public override void Add<T>(T userEntry)
@@ -41,6 +43,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Gets the UserEntry object by UserEntryId.
         /// </summary>
+        /// <typeparam name="T">Type of UserEntry.</typeparam>
         /// <param name="userEntryId">UserEntry Id.</param>
         /// <returns>Returns the UserEntry object.</returns>
         /// <exception cref="ArgumentNullException">Throws when userEntry object is NULL.</exception>
@@ -56,8 +59,20 @@ namespace Aliencube.WeirdFeird.Repositories
         }
 
         /// <summary>
+        /// Gets the list of UserEntry objects.
+        /// </summary>
+        /// <typeparam name="T">Type of UserEntry.</typeparam>
+        /// <returns>Returns the list of UserEntry objects.</returns>
+        public override IList<T> Get<T>()
+        {
+            var userEntries = this.Context.UserEntries.OrderBy(p => p.UserEntryId);
+            return (IList<T>)Convert.ChangeType(userEntries, typeof(IList<T>));
+        }
+
+        /// <summary>
         /// Updates the UserEntry object.
         /// </summary>
+        /// <typeparam name="T">Type of UserEntry.</typeparam>
         /// <param name="userEntry">UserEntry object.</param>
         /// <exception cref="ArgumentNullException">Throws when userEntry object is NULL.</exception>
         public override void Update<T>(T userEntry)
@@ -74,6 +89,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Deletes the UserEntry object from the repository.
         /// </summary>
+        /// <typeparam name="T">Type of UserEntry.</typeparam>
         /// <param name="userEntry">UserEntry object.</param>
         /// <exception cref="ArgumentNullException">Throws when userEntry object is NULL.</exception>
         public override void Delete<T>(T userEntry)

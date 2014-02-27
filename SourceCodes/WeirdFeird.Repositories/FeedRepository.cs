@@ -1,5 +1,6 @@
 ﻿using Aliencube.WeirdFeird.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -28,6 +29,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Adds a new Feed object to the repository.
         /// </summary>
+        /// <typeparam name="T">Type of Feed.</typeparam>
         /// <param name="feed">Feed object.</param>
         /// <exception cref="ArgumentNullException">Throws when feed object is NULL.</exception>
         public override void Add<T>(T feed)
@@ -41,6 +43,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Gets the Feed object by FeedId.
         /// </summary>
+        /// <typeparam name="T">Type of Feed.</typeparam>
         /// <param name="feedId">Feed Id.</param>
         /// <returns>Returns the Feed object.</returns>
         /// <exception cref="ArgumentNullException">Throws when feed object is NULL.</exception>
@@ -56,8 +59,20 @@ namespace Aliencube.WeirdFeird.Repositories
         }
 
         /// <summary>
+        /// Gets the list of Feed objects.
+        /// </summary>
+        /// <typeparam name="T">Type of Feed.</typeparam>
+        /// <returns>Returns the list of Feed objects.</returns>
+        public override IList<T> Get<T>()
+        {
+            var feeds = this.Context.Feeds.OrderBy(p => p.FeedId);
+            return (IList<T>)Convert.ChangeType(feeds, typeof(IList<T>));
+        }
+
+        /// <summary>
         /// Updates the Feed object.
         /// </summary>
+        /// <typeparam name="T">Type of Feed.</typeparam>
         /// <param name="feed">Feed object.</param>
         /// <exception cref="ArgumentNullException">Throws when feed object is NULL.</exception>
         public override void Update<T>(T feed)
@@ -74,6 +89,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Deletes the Feed object from the repository.
         /// </summary>
+        /// <typeparam name="T">Type of Feed.</typeparam>
         /// <param name="feed">Feed object.</param>
         /// <exception cref="ArgumentNullException">Throws when feed object is NULL.</exception>
         public override void Delete<T>(T feed)

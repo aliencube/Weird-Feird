@@ -1,5 +1,6 @@
 ﻿using Aliencube.WeirdFeird.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -28,6 +29,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Adds a new Entry object to the repository.
         /// </summary>
+        /// <typeparam name="T">Type of Entry.</typeparam>
         /// <param name="entry">Entry object.</param>
         /// <exception cref="ArgumentNullException">Throws when entry object is NULL.</exception>
         public override void Add<T>(T entry)
@@ -41,6 +43,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Gets the Entry object by EntryId.
         /// </summary>
+        /// <typeparam name="T">Type of Entry.</typeparam>
         /// <param name="entryId">Entry Id.</param>
         /// <returns>Returns the Entry object.</returns>
         /// <exception cref="ArgumentNullException">Throws when entry object is NULL.</exception>
@@ -56,8 +59,20 @@ namespace Aliencube.WeirdFeird.Repositories
         }
 
         /// <summary>
+        /// Gets the list of Entry objects.
+        /// </summary>
+        /// <typeparam name="T">Type of Entry.</typeparam>
+        /// <returns>Returns the list of Entry objects.</returns>
+        public override IList<T> Get<T>()
+        {
+            var entries = this.Context.Entries.OrderBy(p => p.EntryId);
+            return (IList<T>)Convert.ChangeType(entries, typeof(IList<T>));
+        }
+
+        /// <summary>
         /// Updates the Entry object.
         /// </summary>
+        /// <typeparam name="T">Type of Entry.</typeparam>
         /// <param name="entry">Entry object.</param>
         /// <exception cref="ArgumentNullException">Throws when entry object is NULL.</exception>
         public override void Update<T>(T entry)
@@ -74,6 +89,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Deletes the Entry object from the repository.
         /// </summary>
+        /// <typeparam name="T">Type of Entry.</typeparam>
         /// <param name="entry">Entry object.</param>
         /// <exception cref="ArgumentNullException">Throws when entry object is NULL.</exception>
         public override void Delete<T>(T entry)

@@ -1,5 +1,6 @@
 ﻿using Aliencube.WeirdFeird.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -28,6 +29,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Adds a new Editor object to the repository.
         /// </summary>
+        /// <typeparam name="T">Type of Editor.</typeparam>
         /// <param name="editor">Editor object.</param>
         /// <exception cref="ArgumentNullException">Throws when editor object is NULL.</exception>
         public override void Add<T>(T editor)
@@ -41,6 +43,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Gets the Editor object by EditorId.
         /// </summary>
+        /// <typeparam name="T">Type of Editor.</typeparam>
         /// <param name="editorId">Editor Id.</param>
         /// <returns>Returns the Editor object.</returns>
         /// <exception cref="ArgumentNullException">Throws when editor object is NULL.</exception>
@@ -56,8 +59,20 @@ namespace Aliencube.WeirdFeird.Repositories
         }
 
         /// <summary>
+        /// Gets the list of Editor objects.
+        /// </summary>
+        /// <typeparam name="T">Type of Editor.</typeparam>
+        /// <returns>Returns the list of Editor objects.</returns>
+        public override IList<T> Get<T>()
+        {
+            var editors = this.Context.Editors.OrderBy(p => p.EditorId);
+            return (IList<T>)Convert.ChangeType(editors, typeof(IList<T>));
+        }
+
+        /// <summary>
         /// Updates the Editor object.
         /// </summary>
+        /// <typeparam name="T">Type of Editor.</typeparam>
         /// <param name="editor">Editor object.</param>
         /// <exception cref="ArgumentNullException">Throws when editor object is NULL.</exception>
         public override void Update<T>(T editor)
@@ -74,6 +89,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Deletes the Editor object from the repository.
         /// </summary>
+        /// <typeparam name="T">Type of Editor.</typeparam>
         /// <param name="editor">Editor object.</param>
         /// <exception cref="ArgumentNullException">Throws when editor object is NULL.</exception>
         public override void Delete<T>(T editor)

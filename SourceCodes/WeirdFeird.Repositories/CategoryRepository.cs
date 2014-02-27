@@ -1,5 +1,6 @@
 ﻿using Aliencube.WeirdFeird.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -28,6 +29,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Adds a new Category object to the repository.
         /// </summary>
+        /// <typeparam name="T">Type of Category.</typeparam>
         /// <param name="category">Category object.</param>
         /// <exception cref="ArgumentNullException">Throws when category object is NULL.</exception>
         public override void Add<T>(T category)
@@ -41,6 +43,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Gets the Category object by CategoryId.
         /// </summary>
+        /// <typeparam name="T">Type of Category.</typeparam>
         /// <param name="categoryId">Category Id.</param>
         /// <returns>Returns the Category object.</returns>
         /// <exception cref="ArgumentNullException">Throws when category object is NULL.</exception>
@@ -56,8 +59,20 @@ namespace Aliencube.WeirdFeird.Repositories
         }
 
         /// <summary>
+        /// Gets the list of Category objects.
+        /// </summary>
+        /// <typeparam name="T">Type of Category.</typeparam>
+        /// <returns>Returns the list of Category objects.</returns>
+        public override IList<T> Get<T>()
+        {
+            var categories = this.Context.Categories.OrderBy(p => p.CategoryId);
+            return (IList<T>)Convert.ChangeType(categories, typeof(IList<T>));
+        }
+
+        /// <summary>
         /// Updates the Category object.
         /// </summary>
+        /// <typeparam name="T">Type of Category.</typeparam>
         /// <param name="category">Category object.</param>
         /// <exception cref="ArgumentNullException">Throws when category object is NULL.</exception>
         public override void Update<T>(T category)
@@ -74,6 +89,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Deletes the Category object from the repository.
         /// </summary>
+        /// <typeparam name="T">Type of Category.</typeparam>
         /// <param name="category">Category object.</param>
         /// <exception cref="ArgumentNullException">Throws when category object is NULL.</exception>
         public override void Delete<T>(T category)

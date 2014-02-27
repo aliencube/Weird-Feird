@@ -1,5 +1,6 @@
 ﻿using Aliencube.WeirdFeird.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -28,6 +29,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Adds a new Author object to the repository.
         /// </summary>
+        /// <typeparam name="T">Type of Author.</typeparam>
         /// <param name="author">Author object.</param>
         /// <exception cref="ArgumentNullException">Throws when author object is NULL.</exception>
         public override void Add<T>(T author)
@@ -41,6 +43,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Gets the Author object by AuthorId.
         /// </summary>
+        /// <typeparam name="T">Type of Author.</typeparam>
         /// <param name="authorId">Author Id.</param>
         /// <returns>Returns the Author object.</returns>
         /// <exception cref="ArgumentNullException">Throws when author object is NULL.</exception>
@@ -56,8 +59,20 @@ namespace Aliencube.WeirdFeird.Repositories
         }
 
         /// <summary>
+        /// Gets the list of Author objects.
+        /// </summary>
+        /// <typeparam name="T">Type of Author.</typeparam>
+        /// <returns>Returns the list of Author objects.</returns>
+        public override IList<T> Get<T>()
+        {
+            var authors = this.Context.Authors.OrderBy(p => p.AuthorId);
+            return (IList<T>)Convert.ChangeType(authors, typeof(IList<T>));
+        }
+
+        /// <summary>
         /// Updates the Author object.
         /// </summary>
+        /// <typeparam name="T">Type of Author.</typeparam>
         /// <param name="author">Author object.</param>
         /// <exception cref="ArgumentNullException">Throws when author object is NULL.</exception>
         public override void Update<T>(T author)
@@ -74,6 +89,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Deletes the Author object from the repository.
         /// </summary>
+        /// <typeparam name="T">Type of Author.</typeparam>
         /// <param name="author">Author object.</param>
         /// <exception cref="ArgumentNullException">Throws when author object is NULL.</exception>
         public override void Delete<T>(T author)

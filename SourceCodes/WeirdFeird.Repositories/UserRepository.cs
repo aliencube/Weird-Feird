@@ -1,5 +1,6 @@
 ﻿using Aliencube.WeirdFeird.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -28,6 +29,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Adds a new User object to the repository.
         /// </summary>
+        /// <typeparam name="T">Type of User.</typeparam>
         /// <param name="user">User object.</param>
         /// <exception cref="ArgumentNullException">Throws when user object is NULL.</exception>
         public override void Add<T>(T user)
@@ -41,6 +43,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Gets the User object by UserId.
         /// </summary>
+        /// <typeparam name="T">Type of User.</typeparam>
         /// <param name="userId">User Id.</param>
         /// <returns>Returns the User object.</returns>
         /// <exception cref="ArgumentNullException">Throws when user object is NULL.</exception>
@@ -56,8 +59,20 @@ namespace Aliencube.WeirdFeird.Repositories
         }
 
         /// <summary>
+        /// Gets the list of User objects.
+        /// </summary>
+        /// <typeparam name="T">Type of User.</typeparam>
+        /// <returns>Returns the list of User objects.</returns>
+        public override IList<T> Get<T>()
+        {
+            var users = this.Context.Users.OrderBy(p => p.UserId);
+            return (IList<T>)Convert.ChangeType(users, typeof(IList<T>));
+        }
+
+        /// <summary>
         /// Updates the User object.
         /// </summary>
+        /// <typeparam name="T">Type of User.</typeparam>
         /// <param name="user">User object.</param>
         /// <exception cref="ArgumentNullException">Throws when user object is NULL.</exception>
         public override void Update<T>(T user)
@@ -74,6 +89,7 @@ namespace Aliencube.WeirdFeird.Repositories
         /// <summary>
         /// Deletes the User object from the repository.
         /// </summary>
+        /// <typeparam name="T">Type of User.</typeparam>
         /// <param name="user">User object.</param>
         /// <exception cref="ArgumentNullException">Throws when user object is NULL.</exception>
         public override void Delete<T>(T user)
